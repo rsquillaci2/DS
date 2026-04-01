@@ -1,5 +1,5 @@
 # Tallent Two — Identidade de Marca
-> Versão: 1.1 | Fonte: Manual de Marca Tallent Two (2025) | Repositório: rsquillaci2/DS
+> Versão: 1.2 | Fonte: Manual de Marca Tallent Two (2025) | Repositório: rsquillaci2/DS
 
 ---
 
@@ -43,10 +43,10 @@
 
 | Logo | Disposição | Uso recomendado |
 |------|-----------|----------------|
-| **LOGO 1** | Horizontal (ícone à esquerda + nome à direita) | Documentos, assinatura, cabeçalhos, e-mail |
-| **LOGO 2** | Vertical centralizado (ícone + nome + subtítulo abaixo) | Materiais institucionais, apresentações, capas |
+| **Horizontal** | Ícone à esquerda + nome à direita | Documentos, assinatura, cabeçalhos, e-mail |
+| **Vertical** | Centralizado (ícone + nome + subtítulo abaixo) | Materiais institucionais, apresentações, capas |
 
-### Versões de cor — LOGO 1
+### Versões de cor
 
 | Variação | Fundo ideal | Uso |
 |----------|------------|-----|
@@ -57,13 +57,35 @@
 | **Dourado** | Preto / escuro | Aplicações premium, eventos |
 | **Preto** | Branco / claro | Impressão P&B, sobriedade |
 
-### Formatos disponíveis
+### Assets no repositório
 
-| Formato | Uso |
-|---------|-----|
-| `.svg` | Web, digital, escalável — uso preferencial |
-| `.png` | Apresentações, documentos, redes sociais |
-| `.ai` | Edição, produção gráfica, impressão profissional |
+```
+assets/logo/
+├── horizontal/
+│   ├── png/
+│   │   ├── logo-horizontal-azul.png
+│   │   ├── logo-horizontal-bege.png
+│   │   ├── logo-horizontal-branco.png
+│   │   ├── logo-horizontal-cinza.jpg
+│   │   ├── logo-horizontal-dourado.jpg
+│   │   └── logo-horizontal-preto.png
+│   ├── svg/
+│   │   └── logo-horizontal.svg          ← uso preferencial (web/digital)
+│   └── ai/
+│       └── logo-horizontal.ai           ← edição/produção gráfica
+└── vertical/
+    ├── png/
+    │   ├── logo-vertical-azul.jpg
+    │   ├── logo-vertical-bege.jpg
+    │   ├── logo-vertical-branco.jpg
+    │   ├── logo-vertical-cinza.jpg
+    │   ├── logo-vertical-dourado.jpg
+    │   └── logo-vertical-preto.jpg
+    ├── svg/
+    │   └── logo-vertical.svg            ← uso preferencial (web/digital)
+    └── ai/
+        └── logo-vertical.ai             ← edição/produção gráfica
+```
 
 ---
 
@@ -115,9 +137,18 @@
 | Italic | `Dejanire-Headline-Italic.otf` | Ênfase, citações |
 | Jewel | `Dejanire-Jewel.otf` | Uso especial / decorativo |
 
-> Variações Dejanire Text disponíveis para textos corridos com maior legibilidade.
+### Dejanire Text — textos corridos
 
-**Quando usar:** materiais institucionais, relatórios, apresentações, páginas de governança, materiais premium, sinalização física.
+| Peso | Arquivo | Uso |
+|------|---------|-----|
+| Black | `Dejanire-Text-Black.otf` | Destaques em corpo de texto |
+| Extra Bold | `Dejanire-Text-Extra-Bold.otf` | Ênfase forte |
+| Bold | `Dejanire-Text-Bold.otf` | Ênfase padrão |
+| Medium | `Dejanire-Text-Medium.otf` | Subtítulos em texto |
+| Regular | `Dejanire-Text-Regular.otf` | Corpo de texto corrido |
+| Italic | `Dejanire-Text-Italic.otf` | Citações, ênfase sutil |
+
+**Quando usar Dejanire:** materiais institucionais, relatórios, apresentações, páginas de governança, materiais premium, sinalização física.
 
 ### Roboto — body / interface
 
@@ -131,12 +162,22 @@
 | Thin | `Roboto-Thin.ttf` | Uso decorativo, números grandes |
 | *(+ variantes Italic de cada peso)* | | |
 
-**Quando usar:** documentos, sites, redes sociais, newsletters, tabelas, botões, e-mails internos.
+**Quando usar Roboto:** documentos, sites, redes sociais, newsletters, tabelas, botões, e-mails internos.
+
+### Assets de tipografia no repositório
+
+```
+assets/fonts/
+├── dejanire-headline/    ← 8 arquivos .otf
+├── dejanire-text/        ← 6 arquivos .otf
+└── roboto/               ← 12 arquivos .ttf (6 pesos + 6 italic)
+```
 
 ### Princípio de combinação
 - **Dejanire Headline** → momentos estratégicos, impacto institucional
-- **Roboto** → legibilidade, flexibilidade, elementos secundários
-- As duas coexistem — nunca substituir uma pela outra
+- **Dejanire Text** → textos corridos em materiais premium
+- **Roboto** → legibilidade, flexibilidade, elementos secundários e digitais
+- As famílias coexistem — nunca substituir uma pela outra
 
 ---
 
@@ -165,74 +206,22 @@
 
 ---
 
-## Inventário de Assets — OneDrive
+## Assets pendentes (OneDrive)
 
 > Localização: `Nexd Solutions > 02 - Tallent Two > 08 - Marketing > branding general`
-> Upload para este repo previsto em etapa futura.
 
-### Logo
+Os seguintes assets ainda estão apenas no OneDrive e não foram migrados para este repo:
 
-```
-Logo/
-  LOGO 1/                         ← Versão horizontal
-    PNG/
-      Logo horizontal Azul.png
-      Logo horizontal Bege.png
-      Logo horizontal Branco.png
-      Logo horizontal Cinza.png
-      Logo horizontal Dourado.png
-      Logo horizontal Preto.png
-    SVG/
-      Logo horizontal.svg
-    ILLUSTRATOR/
-  LOGO 2/                         ← Versão vertical centralizada
-    PNG/
-    SVG/
-    ILLUSTRATOR/
-```
-
-### Tipografia
-
-```
-Tipografia/
-  Dejanire Headline/              ← 14 arquivos .otf
-    Dejanire-Headline-Black.otf
-    Dejanire-Headline-Bold.otf
-    Dejanire-Headline-Extra-Bold.otf
-    Dejanire-Headline-Italic.otf
-    Dejanire-Headline-Light.otf
-    Dejanire-Headline-Medium.otf
-    Dejanire-Headline-Regular.otf
-    Dejanire-Jewel.otf
-    Dejanire-Text-Black.otf
-    Dejanire-Text-Bold.otf
-    Dejanire-Text-Extra-Bold.otf
-    Dejanire-Text-Italic.otf
-    Dejanire-Text-Medium.otf
-    Dejanire-Text-Regular.otf
-  Roboto/                         ← 12 arquivos .ttf
-    Roboto-Black.ttf / BlackItalic
-    Roboto-Bold.ttf / BoldItalic
-    Roboto-Italic.ttf
-    Roboto-Light.ttf / LightItalic
-    Roboto-Medium.ttf / MediumItalic
-    Roboto-Regular.ttf
-    Roboto-Thin.ttf / ThinItalic
-```
-
-### Demais pastas
-
-```
-branding general/
-  Aplicações/           ← 8 itens — mockups em contexto
-  Assinatura de e-mail/ ← 1 item
-  Cartão de visita/     ← 1 item
-  Fotografia/           ← 3 itens
-  Manual de marca/      ← PDF completo (2025)
-  Paleta de cores/      ← 3 itens — swatches
-  Pattern/              ← 2 itens — padrão hexagonal navy
-  Social media/         ← 3 itens
-```
+| Pasta | Conteúdo | Status |
+|-------|----------|--------|
+| `Aplicações/` | 8 mockups em contexto | Pendente |
+| `Assinatura de e-mail/` | 1 template | Pendente |
+| `Cartão de visita/` | 1 template | Pendente |
+| `Fotografia/` | 3 fotos institucionais | Pendente |
+| `Manual de marca/` | PDF completo (2025) | Pendente |
+| `Paleta de cores/` | 3 swatches | Pendente |
+| `Pattern/` | 2 padrões hexagonais navy | Pendente |
+| `Social media/` | 3 templates | Pendente |
 
 ---
 
@@ -242,3 +231,4 @@ branding general/
 |--------|------|-----------|
 | 1.0 | 2025 | Manual de Marca inicial |
 | 1.1 | 2026-04 | Inventário completo de assets mapeado via SharePoint |
+| 1.2 | 2026-04 | Assets migrados para o repo: 16 logos + 26 fontes (42 arquivos) |
