@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="ready"><head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/logo-BIf1Qw65.svg">
+<link rel="preload" href="assets/Roboto-Regular-GsmH8bD7.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="assets/KaiseiTokumin-Bold-eHcfNgEn.woff2" as="font" type="font/woff2" crossorigin="">
+<script>if(localStorage.theme==='dark'||(!localStorage.theme&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')</script>
+<style>html:not(.ready) body{opacity:0}</style>
+
+  <title>Botões — Legacy Design System</title>
+  <script type="module" crossorigin="" src="assets/main-DMp3txQt.js"></script>
+  <link rel="stylesheet" crossorigin="" href="assets/main-7Rht7Cvz.css">
+</head>
+<body class="font-body text-gray-900 dark:text-gray-100" x-data="">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-1/2 focus:-translate-x-1/2 focus:z-[60] focus:bg-primary focus:text-white focus:px-6 focus:py-3 focus:rounded-xl focus:shadow-lg focus:text-sm focus:font-medium">
+  Ir para o conteúdo principal
+</a>
+<div x-data="{ menuOpen: false }">
+  <button @click="menuOpen = !menuOpen" class="lg:hidden fixed top-4 left-4 z-50 p-2.5 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-lg shadow-gray-900/10 dark:shadow-black/30 cursor-pointer border border-gray-100 dark:border-gray-700">
+    <svg x-show="!menuOpen" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    <svg x-show="menuOpen" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+  </button>
+
+  <div x-show="menuOpen" @click="menuOpen = false" class="lg:hidden fixed inset-0 bg-primary-900/40 backdrop-blur-sm z-30 transition-opacity" style="display: none;"></div>
+
+  <aside class="fixed left-0 top-0 h-full w-72 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-r border-gray-100 dark:border-gray-700 flex flex-col z-40 transition-transform duration-300 ease-out lg:translate-x-0 overflow-y-auto -translate-x-full" :class="menuOpen ? 'translate-x-0' : '-translate-x-full'">
+    <div class="p-6 pb-5 border-b border-gray-100 dark:border-gray-700">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="data:image/svg+xml,%3csvg%20width='420'%20height='487'%20viewBox='0%200%20420%20487'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M136.433%20168.535V0L240.764%2077.5796V45.4777H280.892V107.006L420%20205.987V486.879H280.892V275.541L136.433%20168.535Z'%20fill='%23284DA4'/%3e%3cpath%20d='M238.089%20395.923V486.879H0V272.866L131.083%20176.56V395.923H238.089Z'%20fill='%239BDF1A'/%3e%3c/svg%3e" alt="Legacy" class="h-10 w-auto transition-transform duration-300 group-hover:scale-105">
+        <div>
+          <span class="font-display text-lg font-bold text-primary block leading-tight">Legacy</span>
+          <span class="text-[11px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Design System</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="flex-1 p-4 pb-6 space-y-5">
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Fundação</h3>
+        <a href="tokens.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke-width="2"></circle><path d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.07-7.07l-2.83 2.83M9.76 14.24l-2.83 2.83m12.14 0l-2.83-2.83M9.76 9.76L6.93 6.93" stroke-width="2" stroke-linecap="round"></path></svg>
+          Tokens
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Componentes</h3>
+        <a href="buttons.html" class="nav-link active">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4" stroke-width="2"></rect></svg>
+          Botões
+        </a>
+        <a href="forms.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="4" rx="1" stroke-width="2"></rect><rect x="3" y="12" width="18" height="4" rx="1" stroke-width="2"></rect></svg>
+          Formulários
+        </a>
+        <a href="cards.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="13" y="3" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="3" y="13" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="13" y="13" width="8" height="8" rx="1.5" stroke-width="2"></rect></svg>
+          Cards
+        </a>
+        <a href="navigation.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"></circle><polygon points="12,7 14.5,14.5 12,13 9.5,14.5" fill="currentColor" stroke="none"></polygon></svg>
+          Navegação
+        </a>
+        <a href="feedback.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke-width="2" stroke-linecap="round"></path></svg>
+          Feedback
+        </a>
+        <a href="tables.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"></rect><line x1="3" y1="9" x2="21" y2="9" stroke-width="2"></line><line x1="3" y1="15" x2="21" y2="15" stroke-width="2"></line><line x1="9" y1="9" x2="9" y2="21" stroke-width="2"></line></svg>
+          Tabelas
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Layout</h3>
+        <a href="layout.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"></rect><line x1="3" y1="9" x2="21" y2="9" stroke-width="2"></line><line x1="9" y1="9" x2="9" y2="21" stroke-width="2"></line></svg>
+          Layout &amp; Seções
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Data Display</h3>
+        <a href="dashboard.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+          Dashboard
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Exemplos</h3>
+        <a href="templates.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"></rect><line x1="8" y1="21" x2="16" y2="21" stroke-width="2" stroke-linecap="round"></line><line x1="12" y1="17" x2="12" y2="21" stroke-width="2" stroke-linecap="round"></line></svg>
+          Templates
+        </a>
+      </div>
+    </nav>
+
+    <div class="p-4 border-t border-gray-100 dark:border-gray-700">
+      <div class="px-3 py-2 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Legacy Seguros</p>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 font-body">v1.0</p>
+        </div>
+        <button onclick="toggleDarkMode()" class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 dark:ring-offset-gray-900" aria-label="Alternar tema">
+          <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+  <main id="main-content" class="lg:ml-72 min-h-screen">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+
+      <!-- Section 1: Variantes -->
+      <section class="mb-16">
+        <h2 class="section-title">Variantes</h2>
+        <p class="section-desc">Os 5 estilos de botão disponíveis.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="flex flex-wrap gap-4">
+              <button class="btn btn-md btn-primary">Primary</button>
+              <button class="btn btn-md btn-accent">Accent</button>
+              <button class="btn btn-md btn-outline">Outline</button>
+              <button class="btn btn-md btn-ghost">Ghost</button>
+              <button class="btn btn-md btn-danger">Danger</button>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-wrap gap-4"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-primary"</span>&gt;</span>Primary<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-accent"</span>&gt;</span>Accent<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-outline"</span>&gt;</span>Outline<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-ghost"</span>&gt;</span>Ghost<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-danger"</span>&gt;</span>Danger<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 2: Tamanhos -->
+      <section class="mb-16">
+        <h2 class="section-title">Tamanhos</h2>
+        <p class="section-desc">Três tamanhos para diferentes contextos.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="flex items-center gap-4">
+              <button class="btn btn-sm btn-primary">Pequeno</button>
+              <button class="btn btn-md btn-primary">Médio</button>
+              <button class="btn btn-lg btn-primary">Grande</button>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-center gap-4"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-sm btn-primary"</span>&gt;</span>Pequeno<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-primary"</span>&gt;</span>Médio<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-lg btn-primary"</span>&gt;</span>Grande<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 3: Estados -->
+      <section class="mb-16">
+        <h2 class="section-title">Estados</h2>
+        <p class="section-desc">Default, desabilitado e carregando.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="flex flex-wrap gap-4">
+              <button class="btn btn-md btn-primary">Default</button>
+              <button class="btn btn-md btn-primary opacity-50 cursor-not-allowed" disabled="">Desabilitado</button>
+              <button class="btn btn-md btn-primary" disabled="">
+                <svg class="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg><!-- spinner icon -->
+                Carregando...
+              </button>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-wrap gap-4"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-primary"</span>&gt;</span>Default<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-primary opacity-50 cursor-not-allowed"</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">""</span>&gt;</span>Desabilitado<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-primary"</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">""</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"animate-spin h-4 w-4"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"opacity-25"</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">"12"</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">"12"</span> <span class="hljs-attr">r</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"4"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"opacity-75"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><span class="hljs-comment">&lt;!-- spinner icon --&gt;</span>
+    Carregando...
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 4: Com Ícone -->
+      <section class="mb-16">
+        <h2 class="section-title">Com Ícone</h2>
+        <p class="section-desc">Botões com ícone à esquerda, à direita ou apenas ícone.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="flex flex-wrap gap-4">
+              <!-- Icon left -->
+              <button class="btn btn-md btn-primary">
+                <svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Adicionar
+              </button>
+              <!-- Icon right -->
+              <button class="btn btn-md btn-outline">
+                Download
+                <svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <!-- Icon only -->
+              <button class="btn btn-md btn-ghost" aria-label="Configurações">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-wrap gap-4"</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Icon left --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-primary"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4"</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M12 4v16m8-8H4"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    Adicionar
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Icon right --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-outline"</span>&gt;</span>
+    Download
+    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4"</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M19 9l-7 7-7-7"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Icon only --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-ghost"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Configurações"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M15 12a3 3 0 11-6 0 3 3 0 016 0z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 5: Grupo de Botões -->
+      <section class="mb-16">
+        <h2 class="section-title">Grupo de Botões</h2>
+        <p class="section-desc">Botões agrupados horizontalmente.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="inline-flex rounded-lg overflow-hidden border border-primary">
+              <button class="btn btn-md text-primary hover:bg-primary-50">Esquerda</button>
+              <button class="btn btn-md text-primary hover:bg-primary-50 border-l border-primary">Centro</button>
+              <button class="btn btn-md text-primary hover:bg-primary-50 border-l border-primary">Direita</button>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"inline-flex rounded-lg overflow-hidden border border-primary"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md text-primary hover:bg-primary-50"</span>&gt;</span>Esquerda<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md text-primary hover:bg-primary-50 border-l border-primary"</span>&gt;</span>Centro<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md text-primary hover:bg-primary-50 border-l border-primary"</span>&gt;</span>Direita<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+    </div>
+  </main>
+  <footer class="lg:ml-72 border-t border-gray-100 dark:border-gray-700 py-10 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p class="text-[12px] text-gray-500 dark:text-gray-400 font-body tracking-wide">Legacy Seguros Inteligência em Negócios LTDA</p>
+    <p class="text-[11px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Design System v1.0</p>
+  </div>
+</footer>
+
+
+
+</body></html>

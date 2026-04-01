@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="ready"><head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/logo-BIf1Qw65.svg">
+<link rel="preload" href="assets/Roboto-Regular-GsmH8bD7.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="assets/KaiseiTokumin-Bold-eHcfNgEn.woff2" as="font" type="font/woff2" crossorigin="">
+<script>if(localStorage.theme==='dark'||(!localStorage.theme&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')</script>
+<style>html:not(.ready) body{opacity:0}</style>
+
+  <title>Feedback — Legacy Design System</title>
+  <script type="module" crossorigin="" src="assets/main-DMp3txQt.js"></script>
+  <link rel="stylesheet" crossorigin="" href="assets/main-7Rht7Cvz.css">
+</head>
+<body class="font-body text-gray-900 dark:text-gray-100" x-data="">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-1/2 focus:-translate-x-1/2 focus:z-[60] focus:bg-primary focus:text-white focus:px-6 focus:py-3 focus:rounded-xl focus:shadow-lg focus:text-sm focus:font-medium">
+  Ir para o conteúdo principal
+</a>
+<div x-data="{ menuOpen: false }">
+  <button @click="menuOpen = !menuOpen" class="lg:hidden fixed top-4 left-4 z-50 p-2.5 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-lg shadow-gray-900/10 dark:shadow-black/30 cursor-pointer border border-gray-100 dark:border-gray-700">
+    <svg x-show="!menuOpen" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    <svg x-show="menuOpen" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+  </button>
+
+  <div x-show="menuOpen" @click="menuOpen = false" class="lg:hidden fixed inset-0 bg-primary-900/40 backdrop-blur-sm z-30 transition-opacity" style="display: none;"></div>
+
+  <aside class="fixed left-0 top-0 h-full w-72 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-r border-gray-100 dark:border-gray-700 flex flex-col z-40 transition-transform duration-300 ease-out lg:translate-x-0 overflow-y-auto -translate-x-full" :class="menuOpen ? 'translate-x-0' : '-translate-x-full'">
+    <div class="p-6 pb-5 border-b border-gray-100 dark:border-gray-700">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="data:image/svg+xml,%3csvg%20width='420'%20height='487'%20viewBox='0%200%20420%20487'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M136.433%20168.535V0L240.764%2077.5796V45.4777H280.892V107.006L420%20205.987V486.879H280.892V275.541L136.433%20168.535Z'%20fill='%23284DA4'/%3e%3cpath%20d='M238.089%20395.923V486.879H0V272.866L131.083%20176.56V395.923H238.089Z'%20fill='%239BDF1A'/%3e%3c/svg%3e" alt="Legacy" class="h-10 w-auto transition-transform duration-300 group-hover:scale-105">
+        <div>
+          <span class="font-display text-lg font-bold text-primary block leading-tight">Legacy</span>
+          <span class="text-[11px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Design System</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="flex-1 p-4 pb-6 space-y-5">
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Fundação</h3>
+        <a href="tokens.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke-width="2"></circle><path d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.07-7.07l-2.83 2.83M9.76 14.24l-2.83 2.83m12.14 0l-2.83-2.83M9.76 9.76L6.93 6.93" stroke-width="2" stroke-linecap="round"></path></svg>
+          Tokens
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Componentes</h3>
+        <a href="buttons.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4" stroke-width="2"></rect></svg>
+          Botões
+        </a>
+        <a href="forms.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="4" rx="1" stroke-width="2"></rect><rect x="3" y="12" width="18" height="4" rx="1" stroke-width="2"></rect></svg>
+          Formulários
+        </a>
+        <a href="cards.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="13" y="3" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="3" y="13" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="13" y="13" width="8" height="8" rx="1.5" stroke-width="2"></rect></svg>
+          Cards
+        </a>
+        <a href="navigation.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"></circle><polygon points="12,7 14.5,14.5 12,13 9.5,14.5" fill="currentColor" stroke="none"></polygon></svg>
+          Navegação
+        </a>
+        <a href="feedback.html" class="nav-link active">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke-width="2" stroke-linecap="round"></path></svg>
+          Feedback
+        </a>
+        <a href="tables.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"></rect><line x1="3" y1="9" x2="21" y2="9" stroke-width="2"></line><line x1="3" y1="15" x2="21" y2="15" stroke-width="2"></line><line x1="9" y1="9" x2="9" y2="21" stroke-width="2"></line></svg>
+          Tabelas
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Layout</h3>
+        <a href="layout.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"></rect><line x1="3" y1="9" x2="21" y2="9" stroke-width="2"></line><line x1="9" y1="9" x2="9" y2="21" stroke-width="2"></line></svg>
+          Layout &amp; Seções
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Data Display</h3>
+        <a href="dashboard.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+          Dashboard
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Exemplos</h3>
+        <a href="templates.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"></rect><line x1="8" y1="21" x2="16" y2="21" stroke-width="2" stroke-linecap="round"></line><line x1="12" y1="17" x2="12" y2="21" stroke-width="2" stroke-linecap="round"></line></svg>
+          Templates
+        </a>
+      </div>
+    </nav>
+
+    <div class="p-4 border-t border-gray-100 dark:border-gray-700">
+      <div class="px-3 py-2 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Legacy Seguros</p>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 font-body">v1.0</p>
+        </div>
+        <button onclick="toggleDarkMode()" class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 dark:ring-offset-gray-900" aria-label="Alternar tema">
+          <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+  <main id="main-content" class="lg:ml-72 min-h-screen">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+
+      <!-- Section 1: Alertas -->
+      <section class="mb-16">
+        <h2 class="section-title">Alertas</h2>
+        <p class="section-desc">Mensagens de feedback com ícone, texto e opção de fechar.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="space-y-4">
+
+              <!-- Success (dismissable) -->
+              <div x-data="{ show: true }" x-show="show" class="alert alert-success">
+                <svg aria-hidden="true" class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div>
+                  <p class="font-semibold">Sucesso!</p>
+                  <p>Sua apólice foi aprovada com sucesso.</p>
+                </div>
+                <button @click="show = false" aria-label="Fechar alerta" class="ml-auto text-green-600 dark:text-green-400 hover:text-green-800 cursor-pointer">
+                  <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+              </div>
+
+              <!-- Warning -->
+              <div class="alert alert-warning">
+                <svg aria-hidden="true" class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.268 16.5c-.77.833.192 2.5 1.732 2.5z"></path></svg>
+                <div>
+                  <p class="font-semibold">Atenção!</p>
+                  <p>Sua apólice vence em 15 dias. Renove para manter a cobertura.</p>
+                </div>
+              </div>
+
+              <!-- Error -->
+              <div class="alert alert-error">
+                <svg aria-hidden="true" class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div>
+                  <p class="font-semibold">Erro!</p>
+                  <p>Não foi possível processar o pagamento. Tente novamente.</p>
+                </div>
+              </div>
+
+              <!-- Info -->
+              <div class="alert alert-info">
+                <svg aria-hidden="true" class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div>
+                  <p class="font-semibold">Informação</p>
+                  <p>Novas coberturas disponíveis para o seu perfil.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"space-y-4"</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Success (dismissable) --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">x-data</span>=<span class="hljs-string">"{ show: true }"</span> <span class="hljs-attr">x-show</span>=<span class="hljs-string">"show"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alert alert-success"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5 shrink-0 mt-0.5"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-semibold"</span>&gt;</span>Sucesso!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Sua apólice foi aprovada com sucesso.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"show = false"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Fechar alerta"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ml-auto text-green-600 dark:text-green-400 hover:text-green-800 cursor-pointer"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M6 18L18 6M6 6l12 12"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Warning --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alert alert-warning"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5 shrink-0 mt-0.5"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.268 16.5c-.77.833.192 2.5 1.732 2.5z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-semibold"</span>&gt;</span>Atenção!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Sua apólice vence em 15 dias. Renove para manter a cobertura.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Error --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alert alert-error"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5 shrink-0 mt-0.5"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-semibold"</span>&gt;</span>Erro!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Não foi possível processar o pagamento. Tente novamente.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Info --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"alert alert-info"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5 shrink-0 mt-0.5"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"font-semibold"</span>&gt;</span>Informação<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Novas coberturas disponíveis para o seu perfil.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 2: Badges -->
+      <section class="mb-16">
+        <h2 class="section-title">Badges</h2>
+        <p class="section-desc">Indicadores de status, contadores e tags.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="flex flex-wrap gap-3">
+              <span class="badge badge-primary">Ativo</span>
+              <span class="badge badge-accent">Novo</span>
+              <span class="badge badge-success">Aprovado</span>
+              <span class="badge badge-warning">Pendente</span>
+              <span class="badge badge-error">Cancelado</span>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-wrap gap-3"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"badge badge-primary"</span>&gt;</span>Ativo<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"badge badge-accent"</span>&gt;</span>Novo<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"badge badge-success"</span>&gt;</span>Aprovado<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"badge badge-warning"</span>&gt;</span>Pendente<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"badge badge-error"</span>&gt;</span>Cancelado<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 3: Toast / Notificação -->
+      <section class="mb-16">
+        <h2 class="section-title">Toast / Notificação</h2>
+        <p class="section-desc">Mensagens temporárias com auto-dismiss.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div x-data="{ showToast: false }">
+              <button class="btn btn-md btn-primary" @click="showToast = true; setTimeout(() =&gt; showToast = false, 3000)">Mostrar Toast</button>
+
+              <!-- Toast -->
+              <div class="fixed bottom-4 right-4 z-50" x-show="showToast" x-transition="" style="display: none;">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 flex items-start gap-3 max-w-sm">
+                  <svg aria-hidden="true" class="w-5 h-5 text-success shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  <div>
+                    <p class="text-sm font-semibold text-gray-900 dark:text-gray-100">Apólice atualizada</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">As alterações foram salvas.</p>
+                  </div>
+                  <button @click="showToast = false" aria-label="Fechar notificação" class="ml-auto text-gray-500 dark:text-gray-400 hover:text-gray-600 cursor-pointer">
+                    <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">x-data</span>=<span class="hljs-string">"{ showToast: false }"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-primary"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"showToast = true; setTimeout(() =<span class="hljs-symbol">&amp;gt;</span> showToast = false, 3000)"</span>&gt;</span>Mostrar Toast<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Toast --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fixed bottom-4 right-4 z-50"</span> <span class="hljs-attr">x-show</span>=<span class="hljs-string">"showToast"</span> <span class="hljs-attr">x-transition</span>=<span class="hljs-string">""</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display: none;"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 flex items-start gap-3 max-w-sm"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5 text-success shrink-0 mt-0.5"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm font-semibold text-gray-900 dark:text-gray-100"</span>&gt;</span>Apólice atualizada<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-600 dark:text-gray-400"</span>&gt;</span>As alterações foram salvas.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"showToast = false"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Fechar notificação"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ml-auto text-gray-500 dark:text-gray-400 hover:text-gray-600 cursor-pointer"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M6 18L18 6M6 6l12 12"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 4: Modal -->
+      <section class="mb-16">
+        <h2 class="section-title">Modal</h2>
+        <p class="section-desc">Dialog centralizado com backdrop.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div x-data="{ open: false }">
+              <button class="btn btn-md btn-primary" @click="open = true">Abrir Modal</button>
+
+              <!-- Backdrop -->
+              <div aria-hidden="true" class="fixed inset-0 bg-black/50 z-40" x-show="open" x-transition:enter="transition-opacity duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" style="display: none;"></div>
+
+              <!-- Modal -->
+              <div class="fixed inset-0 z-50 flex items-center justify-center p-4" x-show="open" @click.self="open = false" style="display: none;">
+                <div role="dialog" aria-modal="true" aria-labelledby="modal-title" class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl max-w-md w-full" x-transition="">
+                  <!-- Header -->
+                  <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+                    <h3 id="modal-title" class="text-lg font-semibold text-gray-900 dark:text-gray-100">Confirmar exclusão</h3>
+                    <button @click="open = false" aria-label="Fechar modal" class="text-gray-500 dark:text-gray-400 hover:text-gray-600 cursor-pointer">
+                      <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                  </div>
+                  <!-- Body -->
+                  <div class="p-6">
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Tem certeza que deseja excluir esta apólice? Esta ação não pode ser desfeita.</p>
+                  </div>
+                  <!-- Footer -->
+                  <div class="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700">
+                    <button class="btn btn-md btn-ghost" @click="open = false">Cancelar</button>
+                    <button class="btn btn-md btn-danger">Excluir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">x-data</span>=<span class="hljs-string">"{ open: false }"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-primary"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"open = true"</span>&gt;</span>Abrir Modal<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Backdrop --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fixed inset-0 bg-black/50 z-40"</span> <span class="hljs-attr">x-show</span>=<span class="hljs-string">"open"</span> <span class="hljs-attr">x-transition:enter</span>=<span class="hljs-string">"transition-opacity duration-200"</span> <span class="hljs-attr">x-transition:enter-start</span>=<span class="hljs-string">"opacity-0"</span> <span class="hljs-attr">x-transition:enter-end</span>=<span class="hljs-string">"opacity-100"</span> <span class="hljs-attr">x-transition:leave</span>=<span class="hljs-string">"transition-opacity duration-200"</span> <span class="hljs-attr">x-transition:leave-start</span>=<span class="hljs-string">"opacity-100"</span> <span class="hljs-attr">x-transition:leave-end</span>=<span class="hljs-string">"opacity-0"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display: none;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Modal --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fixed inset-0 z-50 flex items-center justify-center p-4"</span> <span class="hljs-attr">x-show</span>=<span class="hljs-string">"open"</span> @<span class="hljs-attr">click.self</span>=<span class="hljs-string">"open = false"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display: none;"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"dialog"</span> <span class="hljs-attr">aria-modal</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"modal-title"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-white dark:bg-gray-800 rounded-2xl shadow-xl max-w-md w-full"</span> <span class="hljs-attr">x-transition</span>=<span class="hljs-string">""</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- Header --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"modal-title"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-lg font-semibold text-gray-900 dark:text-gray-100"</span>&gt;</span>Confirmar exclusão<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"open = false"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Fechar modal"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-gray-500 dark:text-gray-400 hover:text-gray-600 cursor-pointer"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M6 18L18 6M6 6l12 12"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- Body --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p-6"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-600 dark:text-gray-400"</span>&gt;</span>Tem certeza que deseja excluir esta apólice? Esta ação não pode ser desfeita.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- Footer --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-ghost"</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"open = false"</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-danger"</span>&gt;</span>Excluir<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 5: Tooltip -->
+      <section class="mb-16">
+        <h2 class="section-title">Tooltip</h2>
+        <p class="section-desc">Dicas contextuais ao passar o mouse.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="flex justify-center">
+              <div class="group relative inline-block">
+                <button class="btn btn-md btn-outline">Passar o mouse aqui</button>
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                  Esta é uma dica contextual
+                  <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex justify-center"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"group relative inline-block"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-md btn-outline"</span>&gt;</span>Passar o mouse aqui<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none"</span>&gt;</span>
+      Esta é uma dica contextual
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"absolute -bottom-2 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 6: Barra de Progresso -->
+      <section class="mb-16">
+        <h2 class="section-title">Barra de Progresso</h2>
+        <p class="section-desc">Indicadores de progresso determinado e indeterminado.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="space-y-6">
+
+              <!-- Determinate -->
+              <div>
+                <div class="flex justify-between text-sm mb-2">
+                  <span>Progresso</span>
+                  <span>75%</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
+                  <div class="bg-primary rounded-full h-2.5" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso" style="width: 75%"></div>
+                </div>
+              </div>
+
+              <!-- Indeterminate -->
+              <div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Carregando...</p>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
+                  <div class="bg-primary rounded-full h-2.5 progress-indeterminate"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"space-y-6"</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Determinate --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex justify-between text-sm mb-2"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Progresso<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>75%<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-primary rounded-full h-2.5"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"progressbar"</span> <span class="hljs-attr">aria-valuenow</span>=<span class="hljs-string">"75"</span> <span class="hljs-attr">aria-valuemin</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">aria-valuemax</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Progresso"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width: 75%"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Indeterminate --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-600 dark:text-gray-400 mb-2"</span>&gt;</span>Carregando...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-primary rounded-full h-2.5 progress-indeterminate"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 7: Skeleton Loader -->
+      <section class="mb-16">
+        <h2 class="section-title">Skeleton Loader</h2>
+        <p class="section-desc">Placeholders animados para estados de carregamento.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="card max-w-sm">
+              <div class="card-body">
+                <div role="status" aria-label="Carregando..." class="animate-pulse space-y-4">
+                  <div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                  <div class="space-y-2">
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6"></div>
+                  </div>
+                  <span class="sr-only">Carregando...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card max-w-sm"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card-body"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"status"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Carregando..."</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"animate-pulse space-y-4"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"space-y-2"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-3 bg-gray-200 dark:bg-gray-700 rounded w-3/4"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-3 bg-gray-200 dark:bg-gray-700 rounded w-full"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-3 bg-gray-200 dark:bg-gray-700 rounded w-5/6"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sr-only"</span>&gt;</span>Carregando...<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+    </div>
+  </main>
+  <footer class="lg:ml-72 border-t border-gray-100 dark:border-gray-700 py-10 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p class="text-[12px] text-gray-500 dark:text-gray-400 font-body tracking-wide">Legacy Seguros Inteligência em Negócios LTDA</p>
+    <p class="text-[11px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Design System v1.0</p>
+  </div>
+</footer>
+
+
+
+</body></html>

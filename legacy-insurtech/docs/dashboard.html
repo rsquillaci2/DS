@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="ready"><head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/logo-BIf1Qw65.svg">
+<link rel="preload" href="assets/Roboto-Regular-GsmH8bD7.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="assets/KaiseiTokumin-Bold-eHcfNgEn.woff2" as="font" type="font/woff2" crossorigin="">
+<script>if(localStorage.theme==='dark'||(!localStorage.theme&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')</script>
+<style>html:not(.ready) body{opacity:0}</style>
+
+  <title>Dashboard — Legacy Design System</title>
+  <script type="module" crossorigin="" src="assets/main-DMp3txQt.js"></script>
+  <link rel="stylesheet" crossorigin="" href="assets/main-7Rht7Cvz.css">
+</head>
+<body class="font-body text-gray-900 dark:text-gray-100" x-data="">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-1/2 focus:-translate-x-1/2 focus:z-[60] focus:bg-primary focus:text-white focus:px-6 focus:py-3 focus:rounded-xl focus:shadow-lg focus:text-sm focus:font-medium">
+  Ir para o conteúdo principal
+</a>
+<div x-data="{ menuOpen: false }">
+  <button @click="menuOpen = !menuOpen" class="lg:hidden fixed top-4 left-4 z-50 p-2.5 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-lg shadow-gray-900/10 dark:shadow-black/30 cursor-pointer border border-gray-100 dark:border-gray-700">
+    <svg x-show="!menuOpen" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    <svg x-show="menuOpen" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+  </button>
+
+  <div x-show="menuOpen" @click="menuOpen = false" class="lg:hidden fixed inset-0 bg-primary-900/40 backdrop-blur-sm z-30 transition-opacity" style="display: none;"></div>
+
+  <aside class="fixed left-0 top-0 h-full w-72 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-r border-gray-100 dark:border-gray-700 flex flex-col z-40 transition-transform duration-300 ease-out lg:translate-x-0 overflow-y-auto -translate-x-full" :class="menuOpen ? 'translate-x-0' : '-translate-x-full'">
+    <div class="p-6 pb-5 border-b border-gray-100 dark:border-gray-700">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="data:image/svg+xml,%3csvg%20width='420'%20height='487'%20viewBox='0%200%20420%20487'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M136.433%20168.535V0L240.764%2077.5796V45.4777H280.892V107.006L420%20205.987V486.879H280.892V275.541L136.433%20168.535Z'%20fill='%23284DA4'/%3e%3cpath%20d='M238.089%20395.923V486.879H0V272.866L131.083%20176.56V395.923H238.089Z'%20fill='%239BDF1A'/%3e%3c/svg%3e" alt="Legacy" class="h-10 w-auto transition-transform duration-300 group-hover:scale-105">
+        <div>
+          <span class="font-display text-lg font-bold text-primary block leading-tight">Legacy</span>
+          <span class="text-[11px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Design System</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="flex-1 p-4 pb-6 space-y-5">
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Fundação</h3>
+        <a href="tokens.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke-width="2"></circle><path d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.07-7.07l-2.83 2.83M9.76 14.24l-2.83 2.83m12.14 0l-2.83-2.83M9.76 9.76L6.93 6.93" stroke-width="2" stroke-linecap="round"></path></svg>
+          Tokens
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Componentes</h3>
+        <a href="buttons.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4" stroke-width="2"></rect></svg>
+          Botões
+        </a>
+        <a href="forms.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="4" rx="1" stroke-width="2"></rect><rect x="3" y="12" width="18" height="4" rx="1" stroke-width="2"></rect></svg>
+          Formulários
+        </a>
+        <a href="cards.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="13" y="3" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="3" y="13" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="13" y="13" width="8" height="8" rx="1.5" stroke-width="2"></rect></svg>
+          Cards
+        </a>
+        <a href="navigation.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"></circle><polygon points="12,7 14.5,14.5 12,13 9.5,14.5" fill="currentColor" stroke="none"></polygon></svg>
+          Navegação
+        </a>
+        <a href="feedback.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke-width="2" stroke-linecap="round"></path></svg>
+          Feedback
+        </a>
+        <a href="tables.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"></rect><line x1="3" y1="9" x2="21" y2="9" stroke-width="2"></line><line x1="3" y1="15" x2="21" y2="15" stroke-width="2"></line><line x1="9" y1="9" x2="9" y2="21" stroke-width="2"></line></svg>
+          Tabelas
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Layout</h3>
+        <a href="layout.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"></rect><line x1="3" y1="9" x2="21" y2="9" stroke-width="2"></line><line x1="9" y1="9" x2="9" y2="21" stroke-width="2"></line></svg>
+          Layout &amp; Seções
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Data Display</h3>
+        <a href="dashboard.html" class="nav-link active">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+          Dashboard
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Exemplos</h3>
+        <a href="templates.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"></rect><line x1="8" y1="21" x2="16" y2="21" stroke-width="2" stroke-linecap="round"></line><line x1="12" y1="17" x2="12" y2="21" stroke-width="2" stroke-linecap="round"></line></svg>
+          Templates
+        </a>
+      </div>
+    </nav>
+
+    <div class="p-4 border-t border-gray-100 dark:border-gray-700">
+      <div class="px-3 py-2 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Legacy Seguros</p>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 font-body">v1.0</p>
+        </div>
+        <button onclick="toggleDarkMode()" class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 dark:ring-offset-gray-900" aria-label="Alternar tema">
+          <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+  <main id="main-content" class="lg:ml-72 min-h-screen">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+
+      <!-- Section 1: Stat Widgets -->
+      <section class="mb-16">
+        <h2 class="section-title">Stat Widgets</h2>
+        <p class="section-desc">KPIs com valor, label e indicador de tendência.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+              <!-- Clientes Ativos -->
+              <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+                <div class="w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-center">
+                  <svg aria-hidden="true" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mt-3">Clientes Ativos</div>
+                <div class="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">1.247</div>
+                <div class="flex items-center gap-1 mt-2 text-sm text-success">
+                  <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                  +12% este mês
+                </div>
+              </div>
+
+              <!-- Receita Mensal -->
+              <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+                <div class="w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-center">
+                  <svg aria-hidden="true" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mt-3">Receita Mensal</div>
+                <div class="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">R$ 89.4k</div>
+                <div class="flex items-center gap-1 mt-2 text-sm text-success">
+                  <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                  +8.2% este mês
+                </div>
+              </div>
+
+              <!-- Apólices Novas -->
+              <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+                <div class="w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-center">
+                  <svg aria-hidden="true" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mt-3">Apólices Novas</div>
+                <div class="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">156</div>
+                <div class="flex items-center gap-1 mt-2 text-sm text-success">
+                  <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                  +23% este mês
+                </div>
+              </div>
+
+              <!-- Sinistros Abertos -->
+              <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+                <div class="w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-center">
+                  <svg aria-hidden="true" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.268 16.5c-.77.833.192 2.5 1.732 2.5z"></path></svg>
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mt-3">Sinistros Abertos</div>
+                <div class="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">23</div>
+                <div class="flex items-center gap-1 mt-2 text-sm text-error">
+                  <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                  -3.1% este mês
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Clientes Ativos --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-center"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5 text-primary"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-500 dark:text-gray-400 mt-3"</span>&gt;</span>Clientes Ativos<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1"</span>&gt;</span>1.247<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-center gap-1 mt-2 text-sm text-success"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M5 10l7-7m0 0l7 7m-7-7v18"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      +12% este mês
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Receita Mensal --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-center"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5 text-primary"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-500 dark:text-gray-400 mt-3"</span>&gt;</span>Receita Mensal<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1"</span>&gt;</span>R$ 89.4k<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-center gap-1 mt-2 text-sm text-success"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M5 10l7-7m0 0l7 7m-7-7v18"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      +8.2% este mês
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Apólices Novas --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-center"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5 text-primary"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-500 dark:text-gray-400 mt-3"</span>&gt;</span>Apólices Novas<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1"</span>&gt;</span>156<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-center gap-1 mt-2 text-sm text-success"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M5 10l7-7m0 0l7 7m-7-7v18"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      +23% este mês
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Sinistros Abertos --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-center"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5 text-primary"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.268 16.5c-.77.833.192 2.5 1.732 2.5z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-500 dark:text-gray-400 mt-3"</span>&gt;</span>Sinistros Abertos<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1"</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-center gap-1 mt-2 text-sm text-error"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M19 14l-7 7m0 0l-7-7m7 7V3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      -3.1% este mês
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 2: Chart Container -->
+      <section class="mb-16">
+        <h2 class="section-title">Container de Gráfico</h2>
+        <p class="section-desc">Container estilizado para integração com Chart.js ou similar.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+              <!-- Header -->
+              <div class="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Receita por Tipo de Seguro</h3>
+                <select class="text-sm px-3 py-1.5 pr-8 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 appearance-none bg-no-repeat bg-[length:1rem] bg-[right_0.5rem_center] focus:border-primary focus:ring-2 focus:ring-primary-200 focus:outline-none cursor-pointer dark:text-gray-100" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7290'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E&quot;)">
+                  <option>2024</option>
+                  <option>2023</option>
+                  <option>2022</option>
+                </select>
+              </div>
+              <!-- Body -->
+              <div class="p-6">
+                <div class="h-64 border-2 border-dashed border-gray-200 dark:border-gray-600 rounded-lg flex items-center justify-center">
+                  <span class="text-sm text-gray-500 dark:text-gray-400">Área do gráfico (Chart.js)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700"</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Header --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-lg font-semibold text-gray-900 dark:text-gray-100"</span>&gt;</span>Receita por Tipo de Seguro<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm px-3 py-1.5 pr-8 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 appearance-none bg-no-repeat bg-[length:1rem] bg-[right_0.5rem_center] focus:border-primary focus:ring-2 focus:ring-primary-200 focus:outline-none cursor-pointer dark:text-gray-100"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"background-image: url(<span class="hljs-symbol">&amp;quot;</span>data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7290'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E<span class="hljs-symbol">&amp;quot;</span>)"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>2024<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>2023<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>2022<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Body --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p-6"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"h-64 border-2 border-dashed border-gray-200 dark:border-gray-600 rounded-lg flex items-center justify-center"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-500 dark:text-gray-400"</span>&gt;</span>Área do gráfico (Chart.js)<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 3: Activity Feed -->
+      <section class="mb-16">
+        <h2 class="section-title">Atividade Recente</h2>
+        <p class="section-desc">Feed cronológico de eventos.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+              <!-- Header -->
+              <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Atividade Recente</h3>
+              </div>
+              <!-- Items -->
+              <div class="divide-y divide-gray-100 dark:divide-gray-700">
+
+                <!-- Item 1: Approved -->
+                <div class="flex items-start gap-4 p-6">
+                  <div class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0">
+                    <svg aria-hidden="true" class="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-900 dark:text-gray-100">Apólice AP-2024-156 aprovada</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Maria Silva</p>
+                    <p class="text-xs text-gray-400 dark:text-gray-400">Há 2 horas</p>
+                  </div>
+                </div>
+
+                <!-- Item 2: New proposal -->
+                <div class="flex items-start gap-4 p-6">
+                  <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center shrink-0">
+                    <svg aria-hidden="true" class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-900 dark:text-gray-100">Nova proposta recebida</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">João Santos</p>
+                    <p class="text-xs text-gray-400 dark:text-gray-400">Há 4 horas</p>
+                  </div>
+                </div>
+
+                <!-- Item 3: Expiring -->
+                <div class="flex items-start gap-4 p-6">
+                  <div class="w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center shrink-0">
+                    <svg aria-hidden="true" class="w-4 h-4 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.268 16.5c-.77.833.192 2.5 1.732 2.5z"></path></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-900 dark:text-gray-100">Vencimento em 7 dias — AP-2024-089</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Ana Costa</p>
+                    <p class="text-xs text-gray-400 dark:text-gray-400">Há 6 horas</p>
+                  </div>
+                </div>
+
+                <!-- Item 4: Claim -->
+                <div class="flex items-start gap-4 p-6">
+                  <div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center shrink-0">
+                    <svg aria-hidden="true" class="w-4 h-4 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-900 dark:text-gray-100">Sinistro #234 registrado</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Carlos Oliveira</p>
+                    <p class="text-xs text-gray-400 dark:text-gray-400">Ontem</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700"</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Header --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"p-6 border-b border-gray-200 dark:border-gray-700"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-lg font-semibold text-gray-900 dark:text-gray-100"</span>&gt;</span>Atividade Recente<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Items --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"divide-y divide-gray-100 dark:divide-gray-700"</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Item 1: Approved --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-start gap-4 p-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center shrink-0"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4 text-success"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M5 13l4 4L19 7"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-900 dark:text-gray-100"</span>&gt;</span>Apólice AP-2024-156 aprovada<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-500 dark:text-gray-400"</span>&gt;</span>Maria Silva<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-400 dark:text-gray-400"</span>&gt;</span>Há 2 horas<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Item 2: New proposal --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-start gap-4 p-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center shrink-0"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4 text-primary"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-900 dark:text-gray-100"</span>&gt;</span>Nova proposta recebida<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-500 dark:text-gray-400"</span>&gt;</span>João Santos<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-400 dark:text-gray-400"</span>&gt;</span>Há 4 horas<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Item 3: Expiring --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-start gap-4 p-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-8 h-8 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center shrink-0"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4 text-warning"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.268 16.5c-.77.833.192 2.5 1.732 2.5z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-900 dark:text-gray-100"</span>&gt;</span>Vencimento em 7 dias — AP-2024-089<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-500 dark:text-gray-400"</span>&gt;</span>Ana Costa<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-400 dark:text-gray-400"</span>&gt;</span>Há 6 horas<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Item 4: Claim --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-start gap-4 p-6"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-8 h-8 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center shrink-0"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4 text-error"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M6 18L18 6M6 6l12 12"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-900 dark:text-gray-100"</span>&gt;</span>Sinistro #234 registrado<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-500 dark:text-gray-400"</span>&gt;</span>Carlos Oliveira<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-400 dark:text-gray-400"</span>&gt;</span>Ontem<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 4: Stepper -->
+      <section class="mb-16">
+        <h2 class="section-title">Stepper</h2>
+        <p class="section-desc">Indicador de progresso multi-etapa.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="overflow-x-auto"><div class="flex items-center justify-between max-w-2xl mx-auto min-w-[500px]" role="group" aria-label="Progresso: etapa 3 de 4">
+
+              <!-- Step 1: Complete -->
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold" aria-label="Dados Pessoais — concluído">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <span class="text-xs mt-2 text-center text-primary font-medium">Dados Pessoais</span>
+              </div>
+
+              <!-- Line 1-2 -->
+              <div class="flex-1 h-0.5 mx-2 bg-primary" aria-hidden="true"></div>
+
+              <!-- Step 2: Complete -->
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold" aria-label="Endereço — concluído">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <span class="text-xs mt-2 text-center text-primary font-medium">Endereço</span>
+              </div>
+
+              <!-- Line 2-3 -->
+              <div class="flex-1 h-0.5 mx-2 bg-primary" aria-hidden="true"></div>
+
+              <!-- Step 3: Current -->
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold" aria-label="Documentos — etapa atual" aria-current="step">
+                  3
+                </div>
+                <span class="text-xs mt-2 text-center text-primary font-medium">Documentos</span>
+              </div>
+
+              <!-- Line 3-4 -->
+              <div class="flex-1 h-0.5 mx-2 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></div>
+
+              <!-- Step 4: Pending -->
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 flex items-center justify-center text-sm font-bold" aria-label="Confirmação — pendente">
+                  4
+                </div>
+                <span class="text-xs mt-2 text-center text-gray-500 dark:text-gray-400">Confirmação</span>
+              </div>
+
+            </div></div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"overflow-x-auto"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex items-center justify-between max-w-2xl mx-auto min-w-[500px]"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"group"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Progresso: etapa 3 de 4"</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Step 1: Complete --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-col items-center"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Dados Pessoais — concluído"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M5 13l4 4L19 7"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs mt-2 text-center text-primary font-medium"</span>&gt;</span>Dados Pessoais<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Line 1-2 --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex-1 h-0.5 mx-2 bg-primary"</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Step 2: Complete --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-col items-center"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Endereço — concluído"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-5 h-5"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M5 13l4 4L19 7"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs mt-2 text-center text-primary font-medium"</span>&gt;</span>Endereço<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Line 2-3 --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex-1 h-0.5 mx-2 bg-primary"</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Step 3: Current --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-col items-center"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Documentos — etapa atual"</span> <span class="hljs-attr">aria-current</span>=<span class="hljs-string">"step"</span>&gt;</span>
+      3
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs mt-2 text-center text-primary font-medium"</span>&gt;</span>Documentos<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Line 3-4 --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex-1 h-0.5 mx-2 bg-gray-200 dark:bg-gray-700"</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Step 4: Pending --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"flex flex-col items-center"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 flex items-center justify-center text-sm font-bold"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Confirmação — pendente"</span>&gt;</span>
+      4
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs mt-2 text-center text-gray-500 dark:text-gray-400"</span>&gt;</span>Confirmação<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+      <!-- Section 5: Timeline -->
+      <section class="mb-16">
+        <h2 class="section-title">Timeline</h2>
+        <p class="section-desc">Histórico vertical com datas e descrições.</p>
+        <div class="preview-card rounded-t-2xl">
+          <div data-example="">
+            <div class="relative pl-12">
+              <!-- Vertical line -->
+              <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+
+              <!-- Item 1: Approved -->
+              <div class="relative flex gap-4 pb-8">
+                <div class="absolute -left-12 w-8 h-8 rounded-full bg-primary flex items-center justify-center ring-4 ring-white dark:ring-gray-800">
+                  <svg aria-hidden="true" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-900 dark:text-gray-100">15 Mar 2024</p>
+                  <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">Apólice aprovada</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Seguro residencial aprovado e ativado.</p>
+                </div>
+              </div>
+
+              <!-- Item 2: Documents sent -->
+              <div class="relative flex gap-4 pb-8">
+                <div class="absolute -left-12 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-4 ring-white dark:ring-gray-800">
+                  <svg aria-hidden="true" class="w-4 h-4 text-primary-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-900 dark:text-gray-100">10 Mar 2024</p>
+                  <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">Documentos enviados</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Todos os documentos foram verificados.</p>
+                </div>
+              </div>
+
+              <!-- Item 3: Proposal created -->
+              <div class="relative flex gap-4 pb-0">
+                <div class="absolute -left-12 w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center ring-4 ring-white dark:ring-gray-800">
+                  <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-900 dark:text-gray-100">05 Mar 2024</p>
+                  <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">Proposta criada</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Proposta de seguro residencial iniciada.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div><div class="border border-t-0 border-gray-200/60 dark:border-gray-700/60 rounded-b-2xl overflow-hidden shadow-sm"><div class="flex justify-between items-center px-5 py-2.5 bg-gray-800/95 backdrop-blur-sm"><span class="text-xs text-gray-400 font-mono uppercase tracking-widest">HTML</span><button class="text-xs text-gray-400 hover:text-accent font-medium tracking-wide transition-colors duration-200 cursor-pointer" data-copy="">Copiar</button></div><pre class="bg-[#0d1117] p-5 overflow-x-auto m-0"><code class="language-html text-[13px] font-mono leading-relaxed hljs" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"relative pl-12"</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Vertical line --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Item 1: Approved --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"relative flex gap-4 pb-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"absolute -left-12 w-8 h-8 rounded-full bg-primary flex items-center justify-center ring-4 ring-white dark:ring-gray-800"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4 text-white"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M5 13l4 4L19 7"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm font-medium text-gray-900 dark:text-gray-100"</span>&gt;</span>15 Mar 2024<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-700 dark:text-gray-300 mt-1"</span>&gt;</span>Apólice aprovada<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-500 dark:text-gray-400 mt-1"</span>&gt;</span>Seguro residencial aprovado e ativado.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Item 2: Documents sent --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"relative flex gap-4 pb-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"absolute -left-12 w-8 h-8 rounded-full bg-accent flex items-center justify-center ring-4 ring-white dark:ring-gray-800"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4 text-primary-900"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm font-medium text-gray-900 dark:text-gray-100"</span>&gt;</span>10 Mar 2024<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-700 dark:text-gray-300 mt-1"</span>&gt;</span>Documentos enviados<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-500 dark:text-gray-400 mt-1"</span>&gt;</span>Todos os documentos foram verificados.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Item 3: Proposal created --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"relative flex gap-4 pb-0"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"absolute -left-12 w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center ring-4 ring-white dark:ring-gray-800"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"w-4 h-4 text-gray-500 dark:text-gray-400"</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">"none"</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">"currentColor"</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">"0 0 24 24"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">"round"</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">d</span>=<span class="hljs-string">"M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm font-medium text-gray-900 dark:text-gray-100"</span>&gt;</span>05 Mar 2024<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-sm text-gray-700 dark:text-gray-300 mt-1"</span>&gt;</span>Proposta criada<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-xs text-gray-500 dark:text-gray-400 mt-1"</span>&gt;</span>Proposta de seguro residencial iniciada.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
+      </section>
+
+    </div>
+  </main>
+  <footer class="lg:ml-72 border-t border-gray-100 dark:border-gray-700 py-10 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p class="text-[12px] text-gray-500 dark:text-gray-400 font-body tracking-wide">Legacy Seguros Inteligência em Negócios LTDA</p>
+    <p class="text-[11px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Design System v1.0</p>
+  </div>
+</footer>
+
+
+
+</body></html>

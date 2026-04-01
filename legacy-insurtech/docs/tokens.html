@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="ready"><head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="assets/logo-BIf1Qw65.svg">
+<link rel="preload" href="assets/Roboto-Regular-GsmH8bD7.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="assets/KaiseiTokumin-Bold-eHcfNgEn.woff2" as="font" type="font/woff2" crossorigin="">
+<script>if(localStorage.theme==='dark'||(!localStorage.theme&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')</script>
+<style>html:not(.ready) body{opacity:0}</style>
+
+  <title>Tokens — Legacy Design System</title>
+  <script type="module" crossorigin="" src="assets/main-DMp3txQt.js"></script>
+  <link rel="stylesheet" crossorigin="" href="assets/main-7Rht7Cvz.css">
+</head>
+<body class="font-body text-gray-900 dark:text-gray-100" x-data="">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-1/2 focus:-translate-x-1/2 focus:z-[60] focus:bg-primary focus:text-white focus:px-6 focus:py-3 focus:rounded-xl focus:shadow-lg focus:text-sm focus:font-medium">
+  Ir para o conteúdo principal
+</a>
+<div x-data="{ menuOpen: false }">
+  <button @click="menuOpen = !menuOpen" class="lg:hidden fixed top-4 left-4 z-50 p-2.5 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-lg shadow-gray-900/10 dark:shadow-black/30 cursor-pointer border border-gray-100 dark:border-gray-700">
+    <svg x-show="!menuOpen" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    <svg x-show="menuOpen" class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+  </button>
+
+  <div x-show="menuOpen" @click="menuOpen = false" class="lg:hidden fixed inset-0 bg-primary-900/40 backdrop-blur-sm z-30 transition-opacity" style="display: none;"></div>
+
+  <aside class="fixed left-0 top-0 h-full w-72 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-r border-gray-100 dark:border-gray-700 flex flex-col z-40 transition-transform duration-300 ease-out lg:translate-x-0 overflow-y-auto -translate-x-full" :class="menuOpen ? 'translate-x-0' : '-translate-x-full'">
+    <div class="p-6 pb-5 border-b border-gray-100 dark:border-gray-700">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="data:image/svg+xml,%3csvg%20width='420'%20height='487'%20viewBox='0%200%20420%20487'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M136.433%20168.535V0L240.764%2077.5796V45.4777H280.892V107.006L420%20205.987V486.879H280.892V275.541L136.433%20168.535Z'%20fill='%23284DA4'/%3e%3cpath%20d='M238.089%20395.923V486.879H0V272.866L131.083%20176.56V395.923H238.089Z'%20fill='%239BDF1A'/%3e%3c/svg%3e" alt="Legacy" class="h-10 w-auto transition-transform duration-300 group-hover:scale-105">
+        <div>
+          <span class="font-display text-lg font-bold text-primary block leading-tight">Legacy</span>
+          <span class="text-[11px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Design System</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="flex-1 p-4 pb-6 space-y-5">
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Fundação</h3>
+        <a href="tokens.html" class="nav-link active">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke-width="2"></circle><path d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.07-7.07l-2.83 2.83M9.76 14.24l-2.83 2.83m12.14 0l-2.83-2.83M9.76 9.76L6.93 6.93" stroke-width="2" stroke-linecap="round"></path></svg>
+          Tokens
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Componentes</h3>
+        <a href="buttons.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4" stroke-width="2"></rect></svg>
+          Botões
+        </a>
+        <a href="forms.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="4" rx="1" stroke-width="2"></rect><rect x="3" y="12" width="18" height="4" rx="1" stroke-width="2"></rect></svg>
+          Formulários
+        </a>
+        <a href="cards.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="13" y="3" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="3" y="13" width="8" height="8" rx="1.5" stroke-width="2"></rect><rect x="13" y="13" width="8" height="8" rx="1.5" stroke-width="2"></rect></svg>
+          Cards
+        </a>
+        <a href="navigation.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="2"></circle><polygon points="12,7 14.5,14.5 12,13 9.5,14.5" fill="currentColor" stroke="none"></polygon></svg>
+          Navegação
+        </a>
+        <a href="feedback.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke-width="2" stroke-linecap="round"></path></svg>
+          Feedback
+        </a>
+        <a href="tables.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"></rect><line x1="3" y1="9" x2="21" y2="9" stroke-width="2"></line><line x1="3" y1="15" x2="21" y2="15" stroke-width="2"></line><line x1="9" y1="9" x2="9" y2="21" stroke-width="2"></line></svg>
+          Tabelas
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Layout</h3>
+        <a href="layout.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"></rect><line x1="3" y1="9" x2="21" y2="9" stroke-width="2"></line><line x1="9" y1="9" x2="9" y2="21" stroke-width="2"></line></svg>
+          Layout &amp; Seções
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Data Display</h3>
+        <a href="dashboard.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+          Dashboard
+        </a>
+      </div>
+      <div>
+        <h3 class="text-[11px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2.5 px-3">Exemplos</h3>
+        <a href="templates.html" class="nav-link">
+          <svg class="w-4 h-4 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"></rect><line x1="8" y1="21" x2="16" y2="21" stroke-width="2" stroke-linecap="round"></line><line x1="12" y1="17" x2="12" y2="21" stroke-width="2" stroke-linecap="round"></line></svg>
+          Templates
+        </a>
+      </div>
+    </nav>
+
+    <div class="p-4 border-t border-gray-100 dark:border-gray-700">
+      <div class="px-3 py-2 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Legacy Seguros</p>
+          <p class="text-[10px] text-gray-500 dark:text-gray-400 font-body">v1.0</p>
+        </div>
+        <button onclick="toggleDarkMode()" class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 dark:ring-offset-gray-900" aria-label="Alternar tema">
+          <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+  <main id="main-content" class="lg:ml-72 min-h-screen">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+
+      <!-- Page Header -->
+      <section class="mb-16">
+        <h1 class="text-2xl font-display font-bold text-gray-900 dark:text-gray-100 mb-2">Design Tokens</h1>
+        <p class="text-gray-600 dark:text-gray-400">Cores, tipografia, espaçamentos, sombras e arredondamentos que compõem a base visual do Legacy Design System.</p>
+      </section>
+
+      <!-- Primary Color Scale -->
+      <section class="mb-16">
+        <div class="mb-4">
+          <h2 class="section-title">Primary</h2>
+          <p class="section-desc">Azul — confiança, solidez, proteção</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5 gap-3">
+
+          <!-- 50 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-primary-50"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">50</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#E4EAF8</p>
+          </div>
+
+          <!-- 100 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-primary-100"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">100</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#C9D5F1</p>
+          </div>
+
+          <!-- 200 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-primary-200"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">200</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#93ABE3</p>
+          </div>
+
+          <!-- 300 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-primary-300"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">300</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#5D81D5</p>
+          </div>
+
+          <!-- 400 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-primary-400"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">400</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#3563B8</p>
+          </div>
+
+          <!-- 500 (default) -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 ring-2 ring-offset-2 ring-gray-900 bg-primary"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">500 <span class="text-xs text-gray-500 dark:text-gray-400 font-normal">default</span></p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#284DA4</p>
+          </div>
+
+          <!-- 600 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-primary-600"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">600</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#203E83</p>
+          </div>
+
+          <!-- 700 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-primary-700"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">700</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#182E62</p>
+          </div>
+
+          <!-- 800 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-primary-800"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">800</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#101F42</p>
+          </div>
+
+          <!-- 900 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-primary-900"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">900</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#080F21</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Accent Color Scale -->
+      <section class="mb-16">
+        <div class="mb-4">
+          <h2 class="section-title">Accent</h2>
+          <p class="section-desc">Verde — vitalidade, ação, prevenção</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5 gap-3">
+
+          <!-- 50 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 border border-gray-100 dark:border-gray-700 bg-accent-50"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">50</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#F4FCE3</p>
+          </div>
+
+          <!-- 100 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-accent-100"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">100</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#E9F9C7</p>
+          </div>
+
+          <!-- 200 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-accent-200"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">200</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#D3F38F</p>
+          </div>
+
+          <!-- 300 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-accent-300"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">300</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#BDE957</p>
+          </div>
+
+          <!-- 500 (default) — accent has no 400 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 ring-2 ring-offset-2 ring-gray-900 bg-accent"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">500 <span class="text-xs text-gray-500 dark:text-gray-400 font-normal">default</span></p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#9BDF1A</p>
+          </div>
+
+          <!-- 600 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-accent-600"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">600</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#5D8610</p>
+          </div>
+
+          <!-- 700 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-accent-700"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">700</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#3E5A0B</p>
+          </div>
+
+          <!-- 800 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-accent-800"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">800</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#1F2D05</p>
+          </div>
+
+          <!-- 900 -->
+          <div>
+            <div class="h-16 rounded-lg mb-2 bg-accent-900"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">900</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400">#0F1603</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Semantic Colors -->
+      <section class="mb-16">
+        <div class="mb-4">
+          <h2 class="section-title">Cores Semânticas</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+          <!-- Success -->
+          <div>
+            <div class="h-16 rounded-lg mb-3 bg-success"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-0.5">Success</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400 mb-1">#16A34A</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Confirmações, positivo</p>
+          </div>
+
+          <!-- Warning -->
+          <div>
+            <div class="h-16 rounded-lg mb-3 bg-warning"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-0.5">Warning</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400 mb-1">#CA8A04</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Avisos, atenção</p>
+          </div>
+
+          <!-- Error -->
+          <div>
+            <div class="h-16 rounded-lg mb-3 bg-error"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-0.5">Error</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400 mb-1">#DC2626</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Erros, destrutivo</p>
+          </div>
+
+          <!-- Info -->
+          <div>
+            <div class="h-16 rounded-lg mb-3 bg-info"></div>
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-0.5">Info</p>
+            <p class="text-xs font-mono text-gray-400 dark:text-gray-400 mb-1">#284DA4</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Informações</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Typography — Families -->
+      <section class="mb-16">
+        <div class="mb-4">
+          <h2 class="section-title">Tipografia</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Kaisei Tokumin -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="font-display text-xl font-bold text-gray-900 dark:text-gray-100">Kaisei Tokumin</span>
+              <span class="text-xs font-mono bg-primary-50 text-primary px-2 py-0.5 rounded">font-display</span>
+            </div>
+            <p class="font-display text-4xl text-gray-800 dark:text-gray-200 mb-4">Aa Bb Cc Dd Ee</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-body mb-5">Serif elegante para títulos e destaques</p>
+            <div class="space-y-1.5 border-t border-gray-100 dark:border-gray-700 pt-4">
+              <div class="flex items-center gap-3">
+                <span class="font-display font-normal text-sm text-gray-700 dark:text-gray-300 w-32">Regular 400</span>
+                <span class="font-display font-normal text-sm text-gray-400 dark:text-gray-400">Legacy Seguros</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-display font-medium text-sm text-gray-700 dark:text-gray-300 w-32">Medium 500</span>
+                <span class="font-display font-medium text-sm text-gray-400 dark:text-gray-400">Legacy Seguros</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-display font-bold text-sm text-gray-700 dark:text-gray-300 w-32">Bold 700</span>
+                <span class="font-display font-bold text-sm text-gray-400 dark:text-gray-400">Legacy Seguros</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-display text-sm text-gray-700 dark:text-gray-300 w-32" style="font-weight: 800;">ExtraBold 800</span>
+                <span class="font-display text-sm text-gray-400 dark:text-gray-400" style="font-weight: 800;">Legacy Seguros</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Roboto -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="font-body text-xl font-bold text-gray-900 dark:text-gray-100">Roboto</span>
+              <span class="text-xs font-mono bg-primary-50 text-primary px-2 py-0.5 rounded">font-body</span>
+            </div>
+            <p class="font-body text-4xl text-gray-800 dark:text-gray-200 mb-4">Aa Bb Cc Dd Ee</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-body mb-5">Sans-serif moderna para corpo e interface</p>
+            <div class="space-y-1.5 border-t border-gray-100 dark:border-gray-700 pt-4">
+              <div class="flex items-center gap-3">
+                <span class="font-body font-light text-sm text-gray-700 dark:text-gray-300 w-32">Light 300</span>
+                <span class="font-body font-light text-sm text-gray-400 dark:text-gray-400">Legacy Seguros</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-body font-normal text-sm text-gray-700 dark:text-gray-300 w-32">Regular 400</span>
+                <span class="font-body font-normal text-sm text-gray-400 dark:text-gray-400">Legacy Seguros</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-body font-medium text-sm text-gray-700 dark:text-gray-300 w-32">Medium 500</span>
+                <span class="font-body font-medium text-sm text-gray-400 dark:text-gray-400">Legacy Seguros</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-body font-bold text-sm text-gray-700 dark:text-gray-300 w-32">Bold 700</span>
+                <span class="font-body font-bold text-sm text-gray-400 dark:text-gray-400">Legacy Seguros</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Typography — Scale -->
+      <section class="mb-16">
+        <div class="mb-4">
+          <h2 class="section-title">Escala Tipográfica</h2>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm">
+
+          <div class="flex items-baseline gap-6 border-b border-gray-100 dark:border-gray-700 py-4">
+            <span class="text-sm text-gray-400 dark:text-gray-400 font-mono w-24 shrink-0">text-xs</span>
+            <span class="text-xs text-gray-800 dark:text-gray-200">Legacy Seguros</span>
+          </div>
+
+          <div class="flex items-baseline gap-6 border-b border-gray-100 dark:border-gray-700 py-4">
+            <span class="text-sm text-gray-400 dark:text-gray-400 font-mono w-24 shrink-0">text-sm</span>
+            <span class="text-sm text-gray-800 dark:text-gray-200">Legacy Seguros</span>
+          </div>
+
+          <div class="flex items-baseline gap-6 border-b border-gray-100 dark:border-gray-700 py-4">
+            <span class="text-sm text-gray-400 dark:text-gray-400 font-mono w-24 shrink-0">text-base</span>
+            <span class="text-base text-gray-800 dark:text-gray-200">Legacy Seguros</span>
+          </div>
+
+          <div class="flex items-baseline gap-6 border-b border-gray-100 dark:border-gray-700 py-4">
+            <span class="text-sm text-gray-400 dark:text-gray-400 font-mono w-24 shrink-0">text-lg</span>
+            <span class="text-lg text-gray-800 dark:text-gray-200">Legacy Seguros</span>
+          </div>
+
+          <div class="flex items-baseline gap-6 border-b border-gray-100 dark:border-gray-700 py-4">
+            <span class="text-sm text-gray-400 dark:text-gray-400 font-mono w-24 shrink-0">text-xl</span>
+            <span class="text-xl text-gray-800 dark:text-gray-200">Legacy Seguros</span>
+          </div>
+
+          <div class="flex items-baseline gap-6 border-b border-gray-100 dark:border-gray-700 py-4">
+            <span class="text-sm text-gray-400 dark:text-gray-400 font-mono w-24 shrink-0">text-2xl</span>
+            <span class="text-2xl text-gray-800 dark:text-gray-200">Legacy Seguros</span>
+          </div>
+
+          <div class="flex items-baseline gap-6 border-b border-gray-100 dark:border-gray-700 py-4">
+            <span class="text-sm text-gray-400 dark:text-gray-400 font-mono w-24 shrink-0">text-3xl</span>
+            <span class="text-3xl text-gray-800 dark:text-gray-200">Legacy Seguros</span>
+          </div>
+
+          <div class="flex items-baseline gap-6 border-b border-gray-100 dark:border-gray-700 py-4">
+            <span class="text-sm text-gray-400 dark:text-gray-400 font-mono w-24 shrink-0">text-4xl</span>
+            <span class="text-4xl text-gray-800 dark:text-gray-200">Legacy Seguros</span>
+          </div>
+
+          <div class="flex items-baseline gap-6 border-b border-gray-100 dark:border-gray-700 py-4">
+            <span class="text-sm text-gray-400 dark:text-gray-400 font-mono w-24 shrink-0">text-5xl</span>
+            <span class="text-5xl text-gray-800 dark:text-gray-200">Legacy Seguros</span>
+          </div>
+
+          <div class="flex items-baseline gap-6 py-4">
+            <span class="text-sm text-gray-400 dark:text-gray-400 font-mono w-24 shrink-0">text-6xl</span>
+            <span class="text-6xl text-gray-800 dark:text-gray-200">Legacy Seguros</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Spacing Scale -->
+      <section class="mb-16">
+        <div class="mb-4">
+          <h2 class="section-title">Espaçamentos</h2>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm space-y-4">
+
+          <div class="flex items-center gap-6">
+            <span class="text-sm text-gray-500 dark:text-gray-400 font-mono w-28 shrink-0">4px — p-1</span>
+            <div class="h-3 rounded bg-primary" style="width: 4px;"></div>
+          </div>
+
+          <div class="flex items-center gap-6">
+            <span class="text-sm text-gray-500 dark:text-gray-400 font-mono w-28 shrink-0">8px — p-2</span>
+            <div class="h-3 rounded bg-primary" style="width: 8px;"></div>
+          </div>
+
+          <div class="flex items-center gap-6">
+            <span class="text-sm text-gray-500 dark:text-gray-400 font-mono w-28 shrink-0">12px — p-3</span>
+            <div class="h-3 rounded bg-primary" style="width: 12px;"></div>
+          </div>
+
+          <div class="flex items-center gap-6">
+            <span class="text-sm text-gray-500 dark:text-gray-400 font-mono w-28 shrink-0">16px — p-4</span>
+            <div class="h-3 rounded bg-primary" style="width: 16px;"></div>
+          </div>
+
+          <div class="flex items-center gap-6">
+            <span class="text-sm text-gray-500 dark:text-gray-400 font-mono w-28 shrink-0">24px — p-6</span>
+            <div class="h-3 rounded bg-primary" style="width: 24px;"></div>
+          </div>
+
+          <div class="flex items-center gap-6">
+            <span class="text-sm text-gray-500 dark:text-gray-400 font-mono w-28 shrink-0">32px — p-8</span>
+            <div class="h-3 rounded bg-primary" style="width: 32px;"></div>
+          </div>
+
+          <div class="flex items-center gap-6">
+            <span class="text-sm text-gray-500 dark:text-gray-400 font-mono w-28 shrink-0">48px — p-12</span>
+            <div class="h-3 rounded bg-primary" style="width: 48px;"></div>
+          </div>
+
+          <div class="flex items-center gap-6">
+            <span class="text-sm text-gray-500 dark:text-gray-400 font-mono w-28 shrink-0">64px — p-16</span>
+            <div class="h-3 rounded bg-primary" style="width: 64px;"></div>
+          </div>
+
+          <div class="flex items-center gap-6">
+            <span class="text-sm text-gray-500 dark:text-gray-400 font-mono w-28 shrink-0">96px — p-24</span>
+            <div class="h-3 rounded bg-primary" style="width: 96px;"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Shadows -->
+      <section class="mb-16">
+        <div class="mb-4">
+          <h2 class="section-title">Sombras</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+          <div class="text-center">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm mb-3"></div>
+            <p class="text-sm font-mono text-gray-500 dark:text-gray-400">shadow-sm</p>
+          </div>
+
+          <div class="text-center">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow mb-3"></div>
+            <p class="text-sm font-mono text-gray-500 dark:text-gray-400">shadow</p>
+          </div>
+
+          <div class="text-center">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg mb-3"></div>
+            <p class="text-sm font-mono text-gray-500 dark:text-gray-400">shadow-lg</p>
+          </div>
+
+          <div class="text-center">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-xl mb-3"></div>
+            <p class="text-sm font-mono text-gray-500 dark:text-gray-400">shadow-xl</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Border Radius -->
+      <section class="mb-16">
+        <div class="mb-4">
+          <h2 class="section-title">Border Radius</h2>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+
+          <div class="text-center">
+            <div class="bg-primary w-16 h-16 mx-auto mb-3 rounded-none"></div>
+            <p class="text-xs font-mono text-gray-500 dark:text-gray-400">rounded-none</p>
+          </div>
+
+          <div class="text-center">
+            <div class="bg-primary w-16 h-16 mx-auto mb-3 rounded-sm"></div>
+            <p class="text-xs font-mono text-gray-500 dark:text-gray-400">rounded-sm</p>
+          </div>
+
+          <div class="text-center">
+            <div class="bg-primary w-16 h-16 mx-auto mb-3 rounded"></div>
+            <p class="text-xs font-mono text-gray-500 dark:text-gray-400">rounded</p>
+          </div>
+
+          <div class="text-center">
+            <div class="bg-primary w-16 h-16 mx-auto mb-3 rounded-lg"></div>
+            <p class="text-xs font-mono text-gray-500 dark:text-gray-400">rounded-lg</p>
+          </div>
+
+          <div class="text-center">
+            <div class="bg-primary w-16 h-16 mx-auto mb-3 rounded-full"></div>
+            <p class="text-xs font-mono text-gray-500 dark:text-gray-400">rounded-full</p>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+  <footer class="lg:ml-72 border-t border-gray-100 dark:border-gray-700 py-10 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p class="text-[12px] text-gray-500 dark:text-gray-400 font-body tracking-wide">Legacy Seguros Inteligência em Negócios LTDA</p>
+    <p class="text-[11px] text-gray-500 dark:text-gray-400 font-body uppercase tracking-widest">Design System v1.0</p>
+  </div>
+</footer>
+
+
+
+</body></html>
