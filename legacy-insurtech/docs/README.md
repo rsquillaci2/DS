@@ -19,14 +19,19 @@
   dashboard.html      ← KPIs, gráficos, painéis
   templates.html      ← Páginas-modelo prontas
   /assets/
-    /css/             ← Estilos globais e tokens CSS
-    /fonts/           ← Fontes locais (se houver)
-    /icons/           ← Ícones e SVGs
+    main-7Rht7Cvz.css                  ← Estilos globais + tokens (build Vite)
+    main-DMp3txQt.js                   ← JavaScript principal (build Vite)
+    logo-BIf1Qw65.svg                  ← Logotipo SVG
+    Roboto-Regular-GsmH8bD7.woff2      ← Fonte body
+    KaiseiTokumin-Bold-eHcfNgEn.woff2  ← Fonte display
 ```
+
+> Os assets usam hash no nome (build Vite) para cache-busting.
+> Não há subpastas — tudo fica na raiz de `/assets/`.
 
 ---
 
-## Tokens principais (CSS)
+## Tokens principais (referência)
 
 ```css
 :root {
@@ -43,6 +48,9 @@
   --font-body:    'Roboto', sans-serif;
 }
 ```
+
+> Estes tokens estão compilados dentro de `main-7Rht7Cvz.css`.
+> Para a referência completa de cores e escalas, consulte `/brand/README.md`.
 
 ---
 

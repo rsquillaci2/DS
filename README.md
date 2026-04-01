@@ -12,10 +12,10 @@ Cada empresa do portfólio tem sua própria pasta com dois módulos distintos:
 
 ```
 DS/
-├── legacy-insurtech/     ✅ Completo
+├── legacy-insurtech/     ✅ Brand + DS completos
+├── t2-holding/           🔶 Brand completo · DS a construir
 ├── nexd/                 🔶 A construir
 ├── legado-ativos/        🔶 A construir
-├── t2-holding/           🔶 A construir
 └── README.md
 ```
 
@@ -26,9 +26,9 @@ DS/
 | Empresa | Identidade de Marca | Design System | DS publicado |
 |---------|-------------------|---------------|-------------|
 | Legacy Insurtech | ✅ Completo | ✅ Completo | ✅ [Ver site](https://corretora-legacy.up.railway.app/) |
-| Nexd | ❓ A verificar | ❌ Ausente | ❌ |
-| Legado Ativos Judiciais | ❓ A verificar | ❌ Ausente | ❌ |
-| T2 Holding | ❌ A construir | ❌ A construir | ❌ |
+| T2 Holding | ✅ Completo (v1.1) | ❌ A construir | ❌ |
+| Nexd | ❌ A construir | ❌ A construir | ❌ |
+| Legado Ativos Judiciais | ❌ A construir | ❌ A construir | ❌ |
 
 ---
 
@@ -44,7 +44,8 @@ DS/
 ## Convenções
 
 - Versionamento semântico: `v1.0`, `v1.1`, `v2.0`
-- Tokens sempre em `tokens.css` e `tokens.json`
+- DS técnico usa build Vite — assets com hash no nome para cache-busting (ex: `main-7Rht7Cvz.css`)
+- Tokens de referência documentados no `/brand/README.md` de cada empresa
 - Toda alteração de marca passa por revisão do fundador (Ric)
 
 ---

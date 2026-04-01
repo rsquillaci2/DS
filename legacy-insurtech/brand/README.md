@@ -111,13 +111,20 @@ Os ativos originais estão no OneDrive (Nexd Solutions > 03 - Legacy Insurtech >
 
 ## Tom de voz
 
-> *A completar com base no BrandingGuide completo.*
+| Atributo | Descrição |
+|----------|-----------|
+| **Acolhedor e próximo** | Fala com pessoas, não com clientes — linguagem humana e empática |
+| **Claro e direto** | Sem jargão de seguro desnecessário — simplifica o complexo |
+| **Confiante, mas não arrogante** | Transmite segurança sem distanciamento |
+| **Protetor e cuidadoso** | Tom que reflete o propósito da marca — cuidar e proteger |
 
-Diretrizes preliminares (inferidas):
-- Acolhedor e próximo — fala com pessoas, não com clientes
-- Claro e direto — sem jargão de seguro desnecessário
-- Confiante, mas não arrogante
-- Protetor e cuidadoso no tom
+### Exemplos de tom
+
+| Situação | ❌ Evitar | ✅ Preferir |
+|----------|----------|------------|
+| Apresentação de produto | "Nosso seguro possui cobertura abrangente com sinistralidade controlada" | "Você protegido de verdade, sem complicação" |
+| Atendimento ao cliente | "Seu sinistro está em análise conforme apólice vigente" | "Estamos cuidando do seu caso — te avisamos assim que tiver novidade" |
+| Comunicação institucional | "A Legacy é uma corretora de seguros" | "A Legacy simplifica seguros para que você foque no que importa" |
 
 ---
 
