@@ -1,7 +1,7 @@
 """
 Motor de Sinistralidade ANS
 Dashboard Analítico — Tallent Two Financial Holding
-v0.4
+v1.0 — Design System Upgrade
 """
 import streamlit as st
 import duckdb
@@ -15,7 +15,7 @@ import os
 # =========================================================
 # CONFIGURAÇÃO
 # =========================================================
-APP_VERSION = "v0.5"
+APP_VERSION = "v1.0"
 DB_PATH = "/home/ubuntu/mvp_sinistralidade/data/ans_analytics.duckdb"
 LOGO_PATH = "/home/ubuntu/mvp_sinistralidade/logo_t2_sidebar.png"
 
@@ -30,111 +30,292 @@ st.set_page_config(
 # BRAND STYLE — TALLENT TWO DS
 # =========================================================
 PRIMARY = "#2C3D5B"
+PRIMARY_LIGHT = "#3D5278"
+PRIMARY_MUTED = "#5A7099"
 SURFACE = "#FFF3DE"
 GOLD = "#FFD700"
+GOLD_MUTED = "#C9A227"
 GRAY = "#BEBEBE"
+GRAY_500 = "#6B7280"
+GRAY_100 = "#F3F4F6"
 WHITE = "#FFFFFF"
 BLACK = "#000000"
 SUCCESS = "#16A34A"
 WARNING = "#CA8A04"
 ERROR = "#DC2626"
-LIGHT_BG = "#F9FAFB"
 
-CHART_COLORS = ["#2C3D5B", "#3D5278", "#5A7099", "#7D92B3", "#C9A227", "#9CA3AF"]
-PIE_COLORS = ["#2C3D5B", "#5A7099", "#7D92B3", "#A8B8D0", "#C9A227"]
+CHART_COLORS = [PRIMARY, PRIMARY_MUTED, "#7D92B3", "#A8B8D0", GOLD_MUTED, "#9CA3AF"]
+PIE_COLORS = [PRIMARY, PRIMARY_MUTED, "#7D92B3", "#A8B8D0", GOLD_MUTED]
 
-# Custom CSS
+# =========================================================
+# CUSTOM CSS — DESIGN SYSTEM UPGRADE
+# =========================================================
 st.markdown(f"""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700;800&family=Roboto:wght@300;400;500;700&display=swap');
     
-    .main-header {{
+    /* === GLOBAL === */
+    .block-container {{
+        font-family: 'Roboto', sans-serif;
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+    }}
+    
+    h1, h2, h3 {{
         font-family: 'Playfair Display', serif;
-        font-size: 2.2rem;
+        color: {PRIMARY};
+    }}
+    
+    /* === SIDEBAR === */
+    div[data-testid="stSidebar"] {{
+        background: linear-gradient(180deg, {PRIMARY} 0%, #1E2D45 100%);
+    }}
+    div[data-testid="stSidebar"] .stMarkdown {{
+        color: {WHITE};
+    }}
+    div[data-testid="stSidebar"] label {{
+        color: rgba(255,243,222,0.85) !important;
+    }}
+    div[data-testid="stSidebar"] .stRadio label {{
+        color: rgba(255,243,222,0.9) !important;
+        font-size: 0.88rem !important;
+    }}
+    div[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:hover {{
+        background: rgba(255,255,255,0.08);
+        border-radius: 6px;
+    }}
+    
+    /* === PAGE HEADER === */
+    .page-header {{
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
         font-weight: 700;
         color: {PRIMARY};
-        margin-bottom: 0.2rem;
-        line-height: 1.2;
+        margin-bottom: 0.15rem;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
     }}
-    .sub-header {{
+    .page-subtitle {{
         font-family: 'Roboto', sans-serif;
-        font-size: 0.95rem;
-        color: #6B7280;
+        font-size: 0.9rem;
+        color: {GRAY_500};
         margin-top: 0;
+        margin-bottom: 1.2rem;
+        font-weight: 400;
+    }}
+    
+    /* === KPI CARDS === */
+    .kpi-row {{
+        display: flex;
+        gap: 16px;
         margin-bottom: 1.5rem;
     }}
-    .stMetric > div {{
-        background-color: {LIGHT_BG};
-        padding: 0.9rem 1rem;
-        border-radius: 2px;
-        border-bottom: 2px solid {PRIMARY};
+    .kpi-card {{
+        background: {SURFACE};
+        border: 1px solid rgba(44,61,91,0.15);
+        border-left: 4px solid {PRIMARY};
+        border-radius: 8px;
+        padding: 1.1rem 1.2rem;
+        flex: 1;
+        min-width: 0;
     }}
-    .stMetric label {{
-        font-family: 'Roboto', sans-serif !important;
+    .kpi-card .kpi-icon {{
+        width: 36px;
+        height: 36px;
+        background: {PRIMARY};
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.6rem;
+    }}
+    .kpi-card .kpi-icon svg {{
+        width: 18px;
+        height: 18px;
+        stroke: {GOLD};
+        fill: none;
+    }}
+    .kpi-card .kpi-label {{
+        font-family: 'Roboto', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: {GRAY_500};
+        margin-bottom: 0.25rem;
+    }}
+    .kpi-card .kpi-value {{
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: {PRIMARY};
+        line-height: 1.2;
+    }}
+    .kpi-card .kpi-delta {{
+        font-size: 0.72rem;
+        margin-top: 0.3rem;
+        font-weight: 500;
+    }}
+    .kpi-card .kpi-delta.positive {{ color: {SUCCESS}; }}
+    .kpi-card .kpi-delta.negative {{ color: {ERROR}; }}
+    .kpi-card .kpi-delta.neutral {{ color: {GRAY_500}; }}
+    
+    /* === SECTION CARDS === */
+    .section-card {{
+        background: {WHITE};
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }}
+    .section-card-header {{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #F3F4F6;
+    }}
+    .section-card-title {{
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: {PRIMARY};
+        margin: 0;
+    }}
+    
+    /* === TABLES === */
+    .stDataFrame thead tr th {{
+        background-color: {PRIMARY} !important;
+        color: {WHITE} !important;
         font-size: 0.78rem !important;
         font-weight: 500 !important;
         text-transform: uppercase;
         letter-spacing: 0.03em;
-        color: #6B7280 !important;
+    }}
+    .stDataFrame tbody tr:nth-child(even) {{
+        background-color: {SURFACE} !important;
+    }}
+    
+    /* === FOOTER === */
+    .t2-footer {{
+        text-align: center;
+        padding: 1.5rem 0 1rem 0;
+        margin-top: 3rem;
+        border-top: 2px solid {GOLD_MUTED};
+    }}
+    .t2-footer-text {{
+        font-family: 'Roboto', sans-serif;
+        font-size: 0.72rem;
+        color: {GRAY_500};
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }}
+    
+    /* === CAPTIONS === */
+    .fonte-caption {{
+        font-size: 0.7rem;
+        color: #9CA3AF;
+        margin-top: 0.3rem;
+        font-style: italic;
+    }}
+    
+    /* === DIVIDERS === */
+    .gold-divider {{
+        border: none;
+        border-top: 1px solid {GOLD_MUTED};
+        margin: 1.5rem 0;
+        opacity: 0.4;
+    }}
+    .subtle-divider {{
+        border: none;
+        border-top: 1px solid #F3F4F6;
+        margin: 1.2rem 0;
+    }}
+    
+    /* === METRIC OVERRIDE (Streamlit native) === */
+    .stMetric > div {{
+        background-color: {SURFACE};
+        padding: 0.9rem 1rem;
+        border-radius: 8px;
+        border-left: 4px solid {PRIMARY};
+    }}
+    .stMetric label {{
+        font-family: 'Roboto', sans-serif !important;
+        font-size: 0.72rem !important;
+        font-weight: 500 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: {GRAY_500} !important;
     }}
     .stMetric [data-testid="stMetricValue"] {{
         font-family: 'Roboto', sans-serif !important;
         font-weight: 700 !important;
         color: {PRIMARY} !important;
     }}
-    div[data-testid="stSidebar"] {{
-        background-color: {PRIMARY};
+    
+    /* === SELECTBOX === */
+    .stSelectbox label {{
+        font-size: 0.78rem !important;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: {GRAY_500} !important;
     }}
-    div[data-testid="stSidebar"] .stMarkdown {{
-        color: {WHITE};
-    }}
-    div[data-testid="stSidebar"] label {{
-        color: {SURFACE} !important;
-    }}
-    div[data-testid="stSidebar"] .stRadio label {{
-        color: {SURFACE} !important;
-    }}
-    div[data-testid="stSidebar"] .stRadio label span {{
-        font-size: 0.88rem !important;
-    }}
-    h1, h2, h3 {{
-        font-family: 'Playfair Display', serif;
-        color: {PRIMARY};
-    }}
-    h3 {{
-        font-size: 1.15rem !important;
-        margin-top: 1rem !important;
-    }}
-    .stDataFrame thead tr th {{
+    
+    /* === DOWNLOAD BUTTON === */
+    .stDownloadButton button {{
         background-color: {PRIMARY} !important;
         color: {WHITE} !important;
+        border: none !important;
         font-size: 0.8rem !important;
+        font-weight: 500 !important;
+        border-radius: 6px !important;
     }}
-    .block-container {{
-        font-family: 'Roboto', sans-serif;
-        padding-top: 2rem;
-    }}
-    .t2-footer {{
-        text-align: center;
-        color: #9CA3AF;
-        font-size: 0.75rem;
-        padding: 2rem 0 1rem 0;
-        border-top: 1px solid #E5E7EB;
-        margin-top: 3rem;
-        font-family: 'Roboto', sans-serif;
-    }}
-    .fonte-caption {{
-        font-size: 0.72rem;
-        color: #9CA3AF;
-        margin-top: 0.3rem;
-    }}
-    .section-divider {{
-        border: none;
-        border-top: 1px solid #E5E7EB;
-        margin: 1.5rem 0;
+    .stDownloadButton button:hover {{
+        background-color: {PRIMARY_LIGHT} !important;
     }}
 </style>
 """, unsafe_allow_html=True)
+
+
+# =========================================================
+# HELPER: KPI CARD HTML
+# =========================================================
+def kpi_card(label, value, icon_svg="", delta="", delta_type="neutral"):
+    """Gera HTML de um KPI card no padrão DS Tallent Two."""
+    delta_html = ""
+    if delta:
+        delta_html = f'<div class="kpi-delta {delta_type}">{delta}</div>'
+    
+    icon_html = ""
+    if icon_svg:
+        icon_html = f'<div class="kpi-icon"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{icon_svg}</svg></div>'
+    
+    return f"""
+    <div class="kpi-card">
+        {icon_html}
+        <div class="kpi-label">{label}</div>
+        <div class="kpi-value">{value}</div>
+        {delta_html}
+    </div>
+    """
+
+
+def render_kpis(kpis_list):
+    """Renderiza uma row de KPIs. kpis_list = [(label, value, icon, delta, delta_type), ...]"""
+    cards_html = "".join([kpi_card(k[0], k[1], k[2] if len(k) > 2 else "", k[3] if len(k) > 3 else "", k[4] if len(k) > 4 else "neutral") for k in kpis_list])
+    st.markdown(f'<div class="kpi-row">{cards_html}</div>', unsafe_allow_html=True)
+
+
+# SVG Icons
+ICON_USERS = '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'
+ICON_MONEY = '<path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>'
+ICON_CHART = '<path d="M18 20V10M12 20V4M6 20v-6"/>'
+ICON_SHIELD = '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'
+ICON_MAP = '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>'
+ICON_LAYERS = '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>'
+ICON_TARGET = '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>'
+ICON_TRENDING = '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>'
 
 
 # =========================================================
@@ -195,11 +376,11 @@ with st.sidebar:
     if os.path.exists(LOGO_PATH):
         st.image(LOGO_PATH, width=200)
     
-    st.markdown("")
-    st.markdown("#### Motor de Sinistralidade")
-    st.markdown('<span style="font-size:0.82rem; color:#A8B8D0;">Precificação baseada em dados abertos ANS</span>', unsafe_allow_html=True)
+    st.markdown('<div style="height:8px;"></div>', unsafe_allow_html=True)
+    st.markdown('<p style="font-family:Playfair Display,serif; font-size:1.1rem; font-weight:700; color:#FFFFFF; margin:0; line-height:1.3;">Motor de Sinistralidade</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size:0.78rem; color:rgba(255,243,222,0.7); margin:0 0 1rem 0;">Precificação via dados abertos ANS</p>', unsafe_allow_html=True)
     
-    st.markdown("---")
+    st.markdown(f'<hr style="border:none; border-top:1px solid rgba(201,162,39,0.3); margin:0.5rem 0 1rem 0;">', unsafe_allow_html=True)
     
     # Navegação
     pagina = st.radio(
@@ -208,17 +389,17 @@ with st.sidebar:
         label_visibility="collapsed"
     )
     
-    st.markdown("---")
+    st.markdown(f'<hr style="border:none; border-top:1px solid rgba(201,162,39,0.3); margin:1rem 0 0.8rem 0;">', unsafe_allow_html=True)
     
     # Fontes de dados
-    st.markdown('<span style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; color:#A8B8D0;">Fontes de Dados</span>', unsafe_allow_html=True)
-    st.markdown('<span style="font-size:0.82rem;">DIOPS 4T/2025</span>', unsafe_allow_html=True)
-    st.markdown('<span style="font-size:0.82rem;">SIB Individualizado Mar/2026</span>', unsafe_allow_html=True)
-    st.markdown('<span style="font-size:0.82rem;">Cadastro de Produtos ANS</span>', unsafe_allow_html=True)
-    st.markdown('<span style="font-size:0.82rem; color:#C9A227;">696.183 registros granulares</span>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size:0.65rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(168,184,208,0.7); margin-bottom:0.5rem;">Fontes de Dados</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size:0.78rem; color:#A8B8D0; margin:0.2rem 0;">DIOPS 4T/2025</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size:0.78rem; color:#A8B8D0; margin:0.2rem 0;">SIB Individualizado Mar/2026</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size:0.78rem; color:#A8B8D0; margin:0.2rem 0;">Cadastro de Produtos ANS</p>', unsafe_allow_html=True)
+    st.markdown(f'<p style="font-size:0.78rem; color:{GOLD_MUTED}; margin:0.4rem 0 0 0; font-weight:500;">696.183 registros granulares</p>', unsafe_allow_html=True)
     
-    st.markdown("---")
-    st.markdown(f'<span style="font-size:0.72rem; color:#7D92B3;">{APP_VERSION} — Tallent Two</span>', unsafe_allow_html=True)
+    st.markdown(f'<hr style="border:none; border-top:1px solid rgba(201,162,39,0.3); margin:1rem 0 0.5rem 0;">', unsafe_allow_html=True)
+    st.markdown(f'<p style="font-size:0.65rem; color:rgba(125,146,179,0.7); letter-spacing:0.05em;">{APP_VERSION} — Tallent Two Financial Holding</p>', unsafe_allow_html=True)
 
 
 # =========================================================
@@ -238,43 +419,56 @@ def apply_layout(fig, height=350, show_legend=False):
     """Aplica layout padrão T2 a qualquer gráfico Plotly."""
     layout = {**PLOTLY_LAYOUT, "height": height, "showlegend": show_legend}
     fig.update_layout(**layout)
-    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor="#F3F4F6")
-    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor="#F3F4F6")
+    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor="#F3F4F6", zeroline=False)
+    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor="#F3F4F6", zeroline=False)
     return fig
+
+
+def section_header(title, subtitle=""):
+    """Renderiza um header de seção no padrão DS."""
+    sub_html = f'<span style="font-size:0.8rem; color:{GRAY_500}; font-weight:400;">{subtitle}</span>' if subtitle else ""
+    st.markdown(f'<div class="section-card-header"><h3 class="section-card-title">{title}</h3>{sub_html}</div>', unsafe_allow_html=True)
+
+
+def page_footer():
+    """Renderiza o footer institucional."""
+    st.markdown(f"""
+    <div class="t2-footer">
+        <p class="t2-footer-text">Tallent Two Financial Holding — Motor de Sinistralidade ANS {APP_VERSION}</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 # =========================================================
 # PÁGINA 1: VISÃO GERAL
 # =========================================================
 if pagina == "Visão Geral":
-    st.markdown('<p class="main-header">Sinistralidade Comparativa</p>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">Operadoras selecionadas — Demonstrações Contábeis DIOPS 4T/2025</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-header">Sinistralidade Comparativa</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-subtitle">Operadoras selecionadas — Demonstrações Contábeis DIOPS 4T/2025</p>', unsafe_allow_html=True)
     
     df_ops = load_operadoras_data()
+    df_benef = load_beneficiarios()
     
     # KPIs
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric("Operadoras", len(df_ops))
-    with col2:
-        receita_total = df_ops['receita'].sum()
-        st.metric("Receita Total", f"R$ {receita_total/1e9:.2f} bi")
-    with col3:
-        sinist_media = df_ops['despesa'].sum() / df_ops['receita'].sum()
-        st.metric("Sinistralidade Ponderada", f"{sinist_media*100:.1f}%")
-    with col4:
-        df_benef = load_beneficiarios()
-        total_vidas = df_benef[df_benef['mes_competencia'] == df_benef['mes_competencia'].max()]['total_beneficiarios'].sum()
-        st.metric("Vidas (Último Mês)", f"{total_vidas:,.0f}")
+    receita_total = df_ops['receita'].sum()
+    sinist_media = df_ops['despesa'].sum() / df_ops['receita'].sum()
+    total_vidas = df_benef[df_benef['mes_competencia'] == df_benef['mes_competencia'].max()]['total_beneficiarios'].sum()
+    
+    render_kpis([
+        ("Operadoras", str(len(df_ops)), ICON_USERS),
+        ("Receita Total", f"R$ {receita_total/1e9:.2f} bi", ICON_MONEY),
+        ("Sinistralidade Ponderada", f"{sinist_media*100:.1f}%", ICON_CHART, "Alerta > 80%" if sinist_media > 0.8 else "Dentro do esperado", "negative" if sinist_media > 0.8 else "positive"),
+        ("Vidas (Último Mês)", f"{total_vidas:,.0f}", ICON_USERS),
+    ])
     
     st.markdown('<p class="fonte-caption">Base: 6 operadoras selecionadas. Fonte: DIOPS/ANS e SIB/ANS.</p>', unsafe_allow_html=True)
-    st.markdown("---")
+    st.markdown('<hr class="gold-divider">', unsafe_allow_html=True)
     
     # Gráficos
     col_left, col_right = st.columns([3, 2])
     
     with col_left:
-        st.markdown("### Sinistralidade por Operadora")
+        section_header("Sinistralidade por Operadora")
         df_chart = df_ops.copy()
         df_chart['sinistralidade_pct'] = df_chart['sinistralidade'] * 100
         df_chart['nome_display'] = df_chart['nome_operadora'].fillna(df_chart['registro_ans'])
@@ -291,10 +485,10 @@ if pagina == "Visão Geral":
         fig.add_vline(x=75, line_dash="dot", line_color="#9CA3AF", 
                       annotation_text="Alerta 75%", annotation_font_size=10, annotation_font_color="#9CA3AF")
         st.plotly_chart(fig, use_container_width=True)
-        st.markdown('<p class="fonte-caption">Linha pontilhada: limiar de alerta setorial.</p>', unsafe_allow_html=True)
+        st.markdown('<p class="fonte-caption">Linha pontilhada: limiar de alerta setorial (75%).</p>', unsafe_allow_html=True)
     
     with col_right:
-        st.markdown("### Receita vs Despesa Assistencial")
+        section_header("Receita vs Despesa")
         df_comp = df_chart[['nome_display', 'receita', 'despesa']].copy()
         df_comp['receita_bi'] = df_comp['receita'] / 1e9
         df_comp['despesa_bi'] = df_comp['despesa'] / 1e9
@@ -303,14 +497,14 @@ if pagina == "Visão Geral":
         fig2.add_trace(go.Bar(name='Receita', y=df_comp['nome_display'], x=df_comp['receita_bi'],
                               orientation='h', marker_color=PRIMARY))
         fig2.add_trace(go.Bar(name='Despesa', y=df_comp['nome_display'], x=df_comp['despesa_bi'],
-                              orientation='h', marker_color="#DC2626"))
+                              orientation='h', marker_color=ERROR))
         fig2 = apply_layout(fig2, height=320, show_legend=True)
         fig2.update_layout(barmode='group', xaxis_title="R$ bilhões")
         st.plotly_chart(fig2, use_container_width=True)
     
     # Tabela
-    st.markdown("---")
-    st.markdown("### Resumo Financeiro")
+    st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
+    section_header("Resumo Financeiro", "Dados consolidados do período")
     df_display = df_ops[['registro_ans', 'nome_operadora', 'modalidade', 'receita', 'despesa', 'sinistralidade']].copy()
     df_display.columns = ['Registro ANS', 'Operadora', 'Modalidade', 'Receita', 'Despesa Assistencial', 'Sinistralidade']
     df_display['Receita'] = df_display['Receita'].apply(lambda x: f"R$ {x/1e6:,.1f} M")
@@ -318,15 +512,15 @@ if pagina == "Visão Geral":
     df_display['Sinistralidade'] = df_display['Sinistralidade'].apply(lambda x: f"{x*100:.1f}%")
     st.dataframe(df_display, use_container_width=True, hide_index=True)
     
-    st.markdown(f'<div class="t2-footer">Tallent Two Financial Holding — Motor de Sinistralidade ANS {APP_VERSION}</div>', unsafe_allow_html=True)
+    page_footer()
 
 
 # =========================================================
 # PÁGINA 2: ANÁLISE POR OPERADORA
 # =========================================================
 elif pagina == "Análise por Operadora":
-    st.markdown('<p class="main-header">Análise Individual</p>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">Detalhamento financeiro e de carteira por operadora</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-header">Análise Individual</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-subtitle">Detalhamento financeiro e de carteira por operadora</p>', unsafe_allow_html=True)
     
     df_ops = load_operadoras_data()
     df_benef = load_beneficiarios()
@@ -340,19 +534,20 @@ elif pagina == "Análise por Operadora":
     
     op_data = df_ops[df_ops['registro_ans'] == selected_reg].iloc[0]
     
-    st.markdown("---")
+    st.markdown('<hr class="gold-divider">', unsafe_allow_html=True)
     
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.metric("Receita (4T/2025)", f"R$ {op_data['receita']/1e6:,.1f} M")
-    with col2:
-        st.metric("Despesa Assistencial", f"R$ {op_data['despesa']/1e6:,.1f} M")
-    with col3:
-        sinist_val = op_data['sinistralidade'] * 100
-        delta_label = "Acima de 80%" if sinist_val > 80 else "Dentro do esperado"
-        st.metric("Sinistralidade", f"{sinist_val:.1f}%", delta=delta_label)
+    # KPIs
+    sinist_val = op_data['sinistralidade'] * 100
+    sinist_status = "negative" if sinist_val > 80 else ("neutral" if sinist_val > 75 else "positive")
+    sinist_delta = "Acima de 80%" if sinist_val > 80 else ("Atenção" if sinist_val > 75 else "Saudável")
     
-    st.markdown("---")
+    render_kpis([
+        ("Receita (4T/2025)", f"R$ {op_data['receita']/1e6:,.1f} M", ICON_MONEY),
+        ("Despesa Assistencial", f"R$ {op_data['despesa']/1e6:,.1f} M", ICON_CHART),
+        ("Sinistralidade", f"{sinist_val:.1f}%", ICON_SHIELD, sinist_delta, sinist_status),
+    ])
+    
+    st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
     
     df_benef_op = df_benef[df_benef['registro_ans'] == selected_reg]
     
@@ -360,23 +555,24 @@ elif pagina == "Análise por Operadora":
         col_left, col_right = st.columns(2)
         
         with col_left:
-            st.markdown("### Tipo de Contratação")
+            section_header("Tipo de Contratação")
             df_contrat = df_benef_op.groupby('tipo_contratacao')['total_beneficiarios'].sum().reset_index()
             fig = px.pie(df_contrat, values='total_beneficiarios', names='tipo_contratacao',
-                        color_discrete_sequence=PIE_COLORS, hole=0.4)
+                        color_discrete_sequence=PIE_COLORS, hole=0.45)
             fig = apply_layout(fig, height=280, show_legend=True)
             st.plotly_chart(fig, use_container_width=True)
         
         with col_right:
-            st.markdown("### Cobertura Assistencial")
+            section_header("Cobertura Assistencial")
             df_cob = df_benef_op.groupby('cobertura')['total_beneficiarios'].sum().reset_index()
             fig = px.pie(df_cob, values='total_beneficiarios', names='cobertura',
-                        color_discrete_sequence=PIE_COLORS, hole=0.4)
+                        color_discrete_sequence=PIE_COLORS, hole=0.45)
             fig = apply_layout(fig, height=280, show_legend=True)
             st.plotly_chart(fig, use_container_width=True)
         
         # Evolução temporal
-        st.markdown("### Evolução de Beneficiários")
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
+        section_header("Evolução de Beneficiários", "Cobertura médico-hospitalar")
         df_med = df_benef_op[df_benef_op['cobertura'].str.contains('dico', case=False, na=False)]
         df_evol = df_med.groupby('mes_competencia')['total_beneficiarios'].sum().reset_index()
         df_evol = df_evol.sort_values('mes_competencia')
@@ -386,26 +582,26 @@ elif pagina == "Análise por Operadora":
         df_evol['mes_date'] = pd.to_datetime(df_evol['mes_competencia'].astype(str) + '01', format='%Y%m%d')
         df_evol = df_evol.sort_values('mes_date')
         
-        fig = px.line(df_evol, x='mes_date', y='total_beneficiarios',
+        fig = px.area(df_evol, x='mes_date', y='total_beneficiarios',
                      labels={'mes_date': '', 'total_beneficiarios': 'Beneficiários'},
                      color_discrete_sequence=[PRIMARY])
-        fig = apply_layout(fig, height=220)
+        fig = apply_layout(fig, height=240)
         fig.update_layout(xaxis=dict(dtick="M6", tickformat="%b/%Y"))
-        fig.update_traces(mode='lines+markers', marker=dict(size=3), line=dict(width=2))
+        fig.update_traces(line=dict(width=2.5), fillcolor=f"rgba(44,61,91,0.08)")
         st.plotly_chart(fig, use_container_width=True)
-        st.markdown('<p class="fonte-caption">Cobertura médico-hospitalar. Meses com dados parciais removidos automaticamente.</p>', unsafe_allow_html=True)
+        st.markdown('<p class="fonte-caption">Meses com dados parciais removidos automaticamente (threshold: 50% da mediana).</p>', unsafe_allow_html=True)
     else:
         st.info("Dados de beneficiários não disponíveis para esta operadora no dataset consolidado.")
     
-    st.markdown(f'<div class="t2-footer">Tallent Two Financial Holding — Motor de Sinistralidade ANS {APP_VERSION}</div>', unsafe_allow_html=True)
+    page_footer()
 
 
 # =========================================================
 # PÁGINA 3: PROXY POR PRODUTO
 # =========================================================
 elif pagina == "Proxy por Produto":
-    st.markdown('<p class="main-header">Sinistralidade Proxy por Produto</p>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">Estimativa baseada em fatores de ponderação atuarial (segmentação, contratação, abrangência, moderador)</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-header">Sinistralidade Proxy por Produto</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-subtitle">Estimativa baseada em fatores de ponderação atuarial</p>', unsafe_allow_html=True)
     
     df_proxy = load_produtos_proxy()
     
@@ -433,27 +629,24 @@ elif pagina == "Proxy por Produto":
         if selected_qual != "Todas":
             df_filtered = df_filtered[df_filtered['qualidade_proxy'] == selected_qual]
         
-        st.markdown("---")
+        st.markdown('<hr class="gold-divider">', unsafe_allow_html=True)
         
-        # KPIs — USAM df_filtered (corrigido)
-        col1, col2, col3, col4 = st.columns(4)
-        with col1:
-            st.metric("Produtos Filtrados", f"{len(df_filtered):,}")
-        with col2:
-            st.metric("Sinistralidade Proxy Média", f"{df_filtered['sinistralidade_proxy'].mean()*100:.1f}%")
-        with col3:
-            st.metric("Proxy Mínimo", f"{df_filtered['sinistralidade_proxy'].min()*100:.1f}%")
-        with col4:
-            st.metric("Proxy Máximo", f"{df_filtered['sinistralidade_proxy'].max()*100:.1f}%")
+        # KPIs
+        render_kpis([
+            ("Produtos Filtrados", f"{len(df_filtered):,}", ICON_LAYERS),
+            ("Sinistralidade Proxy Média", f"{df_filtered['sinistralidade_proxy'].mean()*100:.1f}%", ICON_CHART),
+            ("Proxy Mínimo", f"{df_filtered['sinistralidade_proxy'].min()*100:.1f}%", ICON_TRENDING),
+            ("Proxy Máximo", f"{df_filtered['sinistralidade_proxy'].max()*100:.1f}%", ICON_TARGET),
+        ])
         
-        st.markdown('<p class="fonte-caption">KPIs calculados sobre o conjunto filtrado acima.</p>', unsafe_allow_html=True)
-        st.markdown("---")
+        st.markdown('<p class="fonte-caption">KPIs calculados sobre o conjunto filtrado.</p>', unsafe_allow_html=True)
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
         
         # Gráficos
         col_left, col_right = st.columns([3, 2])
         
         with col_left:
-            st.markdown("### Distribuição da Sinistralidade Proxy")
+            section_header("Distribuição da Sinistralidade Proxy")
             fig = px.histogram(
                 df_filtered, x=df_filtered['sinistralidade_proxy'] * 100,
                 nbins=25, color='segmentacao',
@@ -466,7 +659,7 @@ elif pagina == "Proxy por Produto":
             st.plotly_chart(fig, use_container_width=True)
         
         with col_right:
-            st.markdown("### Por Tipo de Contratação")
+            section_header("Por Tipo de Contratação")
             df_box = df_filtered.copy()
             df_box['sinistralidade_pct'] = df_box['sinistralidade_proxy'] * 100
             fig = px.box(df_box, x='tipo_contratacao', y='sinistralidade_pct',
@@ -477,8 +670,8 @@ elif pagina == "Proxy por Produto":
             st.plotly_chart(fig, use_container_width=True)
         
         # Tabela
-        st.markdown("---")
-        st.markdown("### Detalhamento por Produto")
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
+        section_header("Detalhamento por Produto", "Top 50 por sinistralidade")
         df_table = df_filtered[['nome_produto', 'segmentacao', 'tipo_contratacao', 
                                 'abrangencia', 'fator_moderador', 'peso_calculado',
                                 'sinistralidade_proxy', 'qualidade_proxy']].copy()
@@ -496,20 +689,20 @@ elif pagina == "Proxy por Produto":
         csv = df_filtered.to_csv(index=False).encode('utf-8')
         st.download_button("Exportar dados filtrados (.csv)", csv, "proxy_produtos.csv", "text/csv")
     
-    st.markdown(f'<div class="t2-footer">Tallent Two Financial Holding — Motor de Sinistralidade ANS {APP_VERSION}</div>', unsafe_allow_html=True)
+    page_footer()
 
 
 # =========================================================
 # PÁGINA 4: GRANULARIDADE (SPRINT 4)
 # =========================================================
 elif pagina == "Granularidade":
-    st.markdown('<p class="main-header">Granularidade por Produto, Município e Faixa Etária</p>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">SIB Individualizado — 28 UFs — Competência Mar/2026</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-header">Granularidade por Produto, Município e Faixa Etária</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-subtitle">SIB Individualizado — 28 UFs — Competência Mar/2026</p>', unsafe_allow_html=True)
     
     try:
         con = get_connection()
         
-        # Filtros PRIMEIRO (para que KPIs respondam)
+        # Filtros
         col_f1, col_f2, col_f3, col_f4 = st.columns(4)
         
         ops = con.execute("SELECT DISTINCT razao_social FROM sib_granular ORDER BY razao_social").df()['razao_social'].tolist()
@@ -541,9 +734,9 @@ elif pagina == "Granularidade":
         
         where_sql = "WHERE " + " AND ".join(where_clauses) if where_clauses else ""
         
-        st.markdown("---")
+        st.markdown('<hr class="gold-divider">', unsafe_allow_html=True)
         
-        # KPIs — RESPONDEM AOS FILTROS (corrigido)
+        # KPIs
         stats = con.execute(f"""
             SELECT 
                 SUM(qt_beneficiario_ativo) as vidas,
@@ -554,21 +747,24 @@ elif pagina == "Granularidade":
             FROM sib_granular {where_sql}
         """).fetchone()
         
-        col1, col2, col3, col4, col5 = st.columns(5)
-        col1.metric("Vidas Ativas", f"{stats[0]:,.0f}")
-        col2.metric("Produtos", f"{stats[1]:,.0f}")
-        col3.metric("Municípios", f"{stats[2]:,.0f}")
-        col4.metric("Operadoras", f"{stats[3]:,.0f}")
-        col5.metric("UFs", f"{stats[4]:,.0f}")
+        vidas_fmt = f"{stats[0]/1e6:.2f}M" if stats[0] > 1e6 else f"{stats[0]/1e3:.0f}k"
         
-        st.markdown('<p class="fonte-caption">Métricas calculadas sobre o filtro selecionado acima.</p>', unsafe_allow_html=True)
-        st.markdown("---")
+        render_kpis([
+            ("Vidas Ativas", vidas_fmt, ICON_USERS),
+            ("Produtos", f"{stats[1]:,}", ICON_LAYERS),
+            ("Municípios", f"{stats[2]:,}", ICON_MAP),
+            ("Operadoras", f"{stats[3]}", ICON_SHIELD),
+            ("UFs", f"{stats[4]}", ICON_MAP),
+        ])
+        
+        st.markdown('<p class="fonte-caption">Métricas calculadas sobre o filtro selecionado.</p>', unsafe_allow_html=True)
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
         
         # Gráficos
         col_left, col_right = st.columns([3, 2])
         
         with col_left:
-            st.markdown("### Top 15 Municípios por Vidas")
+            section_header("Top 15 Municípios por Vidas")
             df_mun = con.execute(f"""
                 SELECT municipio || ' (' || uf || ')' as municipio_uf, 
                        SUM(qt_beneficiario_ativo) as vidas
@@ -586,7 +782,7 @@ elif pagina == "Granularidade":
             st.plotly_chart(fig, use_container_width=True)
         
         with col_right:
-            st.markdown("### Distribuição por Faixa Etária")
+            section_header("Distribuição por Faixa Etária")
             df_idade = con.execute(f"""
                 SELECT faixa_etaria, SUM(qt_beneficiario_ativo) as vidas
                 FROM sib_granular {where_sql}
@@ -615,15 +811,15 @@ elif pagina == "Granularidade":
             
             fig = px.bar(df_idade, x='faixa_etaria', y='vidas',
                         labels={'faixa_etaria': 'Faixa Etária', 'vidas': 'Vidas'},
-                        color_discrete_sequence=["#5A7099"])
+                        color_discrete_sequence=[PRIMARY_MUTED])
             fig = apply_layout(fig, height=380)
             fig.update_layout(xaxis_tickangle=-45)
             st.plotly_chart(fig, use_container_width=True)
         
-        st.markdown("---")
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
         
         # Heatmap
-        st.markdown("### Concentração por UF e Segmentação")
+        section_header("Concentração por UF e Segmentação")
         df_heat = con.execute(f"""
             SELECT uf, segmentacao, SUM(qt_beneficiario_ativo) as vidas
             FROM sib_granular {where_sql}
@@ -635,16 +831,16 @@ elif pagina == "Granularidade":
             df_pivot = df_heat.pivot_table(index='uf', columns='segmentacao', values='vidas', fill_value=0)
             fig = px.imshow(df_pivot, 
                            labels=dict(x="Segmentação", y="UF", color="Vidas"),
-                           color_continuous_scale=[[0, "#F9FAFB"], [0.3, "#A8B8D0"], [0.7, "#5A7099"], [1, PRIMARY]],
+                           color_continuous_scale=[[0, "#F9FAFB"], [0.3, "#A8B8D0"], [0.7, PRIMARY_MUTED], [1, PRIMARY]],
                            aspect="auto")
             fig = apply_layout(fig, height=450)
             fig.update_layout(coloraxis_showscale=True)
             st.plotly_chart(fig, use_container_width=True)
         
-        st.markdown("---")
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
         
         # Tabela por Produto
-        st.markdown("### Detalhamento por Produto")
+        section_header("Detalhamento por Produto", "Top 50 por vidas ativas")
         df_prod = con.execute(f"""
             SELECT 
                 cd_plano as "Cod. Plano",
@@ -667,47 +863,47 @@ elif pagina == "Granularidade":
         csv_gran = df_prod.to_csv(index=False).encode('utf-8')
         st.download_button("Exportar tabela (.csv)", csv_gran, "granularidade_produtos.csv", "text/csv")
         
-        st.markdown("---")
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
         
         # Composição
         col_v1, col_v2 = st.columns(2)
         
         with col_v1:
-            st.markdown("### Titular vs Dependente")
+            section_header("Titular vs Dependente")
             df_vinc = con.execute(f"""
                 SELECT tipo_vinculo, SUM(qt_beneficiario_ativo) as vidas
                 FROM sib_granular {where_sql}
                 GROUP BY tipo_vinculo
             """).df()
             fig = px.pie(df_vinc, values='vidas', names='tipo_vinculo',
-                        color_discrete_sequence=PIE_COLORS, hole=0.4)
+                        color_discrete_sequence=PIE_COLORS, hole=0.45)
             fig = apply_layout(fig, height=280, show_legend=True)
             st.plotly_chart(fig, use_container_width=True)
         
         with col_v2:
-            st.markdown("### Tipo de Contratação")
+            section_header("Tipo de Contratação")
             df_cont = con.execute(f"""
                 SELECT tipo_contratacao, SUM(qt_beneficiario_ativo) as vidas
                 FROM sib_granular {where_sql}
                 GROUP BY tipo_contratacao
             """).df()
             fig = px.pie(df_cont, values='vidas', names='tipo_contratacao',
-                        color_discrete_sequence=CHART_COLORS, hole=0.4)
+                        color_discrete_sequence=CHART_COLORS, hole=0.45)
             fig = apply_layout(fig, height=280, show_legend=True)
             st.plotly_chart(fig, use_container_width=True)
         
     except Exception as e:
         st.error(f"Erro ao carregar dados granulares: {e}")
     
-    st.markdown(f'<div class="t2-footer">Tallent Two Financial Holding — Motor de Sinistralidade ANS {APP_VERSION}</div>', unsafe_allow_html=True)
+    page_footer()
 
 
 # =========================================================
 # PÁGINA 5: SCORE DE RISCO (Sprint 5)
 # =========================================================
 elif pagina == "Score de Risco":
-    st.markdown('<p class="main-header">Score de Risco Atuarial</p>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">Sinistralidade estimada por Produto × Município × Faixa Etária (Rateio Financeiro)</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-header">Score de Risco Atuarial</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-subtitle">Sinistralidade estimada por Produto x Município x Faixa Etária (Rateio Financeiro)</p>', unsafe_allow_html=True)
     
     try:
         con = get_connection()
@@ -739,7 +935,7 @@ elif pagina == "Score de Risco":
         
         where_score = "WHERE " + " AND ".join(filters) if filters else ""
         
-        st.markdown("---")
+        st.markdown('<hr class="gold-divider">', unsafe_allow_html=True)
         
         # KPIs
         kpi_data = con.execute(f"""
@@ -752,30 +948,27 @@ elif pagina == "Score de Risco":
             FROM score_risco_produto_agg {where_score}
         """).df()
         
-        c1, c2, c3, c4, c5 = st.columns(5)
-        with c1:
-            st.markdown(f'<div class="kpi-card"><div class="kpi-value">{int(kpi_data["produtos"].iloc[0]):,}</div><div class="kpi-label">Produtos</div></div>', unsafe_allow_html=True)
-        with c2:
-            vidas_v = kpi_data['vidas'].iloc[0]
-            vidas_fmt = f"{vidas_v/1e6:.2f}M" if vidas_v > 1e6 else f"{vidas_v/1e3:.0f}k"
-            st.markdown(f'<div class="kpi-card"><div class="kpi-value">{vidas_fmt}</div><div class="kpi-label">Vidas</div></div>', unsafe_allow_html=True)
-        with c3:
-            desp_v = kpi_data['despesa'].iloc[0]
-            st.markdown(f'<div class="kpi-card"><div class="kpi-value">R$ {desp_v/1e9:.2f}B</div><div class="kpi-label">Despesa Estimada</div></div>', unsafe_allow_html=True)
-        with c4:
-            sinist_v = kpi_data['sinist_media'].iloc[0] * 100
-            st.markdown(f'<div class="kpi-card"><div class="kpi-value">{sinist_v:.1f}%</div><div class="kpi-label">Sinistralidade Média</div></div>', unsafe_allow_html=True)
-        with c5:
-            custo_v = kpi_data['custo_pc'].iloc[0]
-            st.markdown(f'<div class="kpi-card"><div class="kpi-value">R$ {custo_v:.0f}</div><div class="kpi-label">Custo Per Capita/Mês</div></div>', unsafe_allow_html=True)
+        vidas_v = kpi_data['vidas'].iloc[0]
+        vidas_fmt = f"{vidas_v/1e6:.2f}M" if vidas_v > 1e6 else f"{vidas_v/1e3:.0f}k"
+        desp_v = kpi_data['despesa'].iloc[0]
+        sinist_v = kpi_data['sinist_media'].iloc[0] * 100
+        custo_v = kpi_data['custo_pc'].iloc[0]
         
-        st.markdown("---")
+        render_kpis([
+            ("Produtos", f"{int(kpi_data['produtos'].iloc[0]):,}", ICON_LAYERS),
+            ("Vidas", vidas_fmt, ICON_USERS),
+            ("Despesa Estimada", f"R$ {desp_v/1e9:.2f}B", ICON_MONEY),
+            ("Sinistralidade Média", f"{sinist_v:.1f}%", ICON_CHART, "Acima de 80%" if sinist_v > 80 else "Dentro do esperado", "negative" if sinist_v > 80 else "positive"),
+            ("Custo Per Capita/Mês", f"R$ {custo_v:.0f}", ICON_TARGET),
+        ])
+        
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
         
         # Gráfico 1: Custo Per Capita por Operadora
         col_g1, col_g2 = st.columns(2)
         
         with col_g1:
-            st.markdown("### Custo Per Capita por Operadora")
+            section_header("Custo Per Capita por Operadora")
             df_op_custo = con.execute(f"""
                 SELECT 
                     CASE 
@@ -795,7 +988,7 @@ elif pagina == "Score de Risco":
             """).df()
             
             fig = px.bar(df_op_custo, x='operadora', y='custo_pc',
-                        color='sinist', color_continuous_scale=[[0, '#16A34A'], [0.5, '#C9A227'], [1, '#DC2626']],
+                        color='sinist', color_continuous_scale=[[0, SUCCESS], [0.5, GOLD_MUTED], [1, ERROR]],
                         labels={'operadora': '', 'custo_pc': 'R$/mês', 'sinist': 'Sinistralidade'},
                         text=df_op_custo['custo_pc'].apply(lambda x: f'R$ {x:.0f}'))
             fig = apply_layout(fig, height=380)
@@ -804,7 +997,7 @@ elif pagina == "Score de Risco":
             st.plotly_chart(fig, use_container_width=True)
         
         with col_g2:
-            st.markdown("### Sinistralidade por Tipo de Contratação")
+            section_header("Sinistralidade por Contratação")
             df_contr = con.execute(f"""
                 SELECT 
                     tipo_contratacao,
@@ -817,7 +1010,7 @@ elif pagina == "Score de Risco":
             """).df()
             
             fig = px.bar(df_contr, x='tipo_contratacao', y='custo_pc',
-                        color='sinist', color_continuous_scale=[[0, '#16A34A'], [0.5, '#C9A227'], [1, '#DC2626']],
+                        color='sinist', color_continuous_scale=[[0, SUCCESS], [0.5, GOLD_MUTED], [1, ERROR]],
                         labels={'tipo_contratacao': '', 'custo_pc': 'R$/mês', 'sinist': 'Sinistralidade'},
                         text=df_contr['custo_pc'].apply(lambda x: f'R$ {x:.0f}'))
             fig = apply_layout(fig, height=380)
@@ -825,12 +1018,11 @@ elif pagina == "Score de Risco":
             fig.update_layout(coloraxis_colorbar=dict(title="Sinist.", tickformat=".0%"))
             st.plotly_chart(fig, use_container_width=True)
         
-        st.markdown("---")
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
         
         # Gráfico 2: Mapa de Custo por UF
-        st.markdown("### Custo Per Capita por UF")
+        section_header("Custo Per Capita por UF", "Fator geográfico baseado em VCMH/IESS")
         
-        # Filtro de operadora para UF
         filters_uf = []
         if op_sel != "Todas":
             filters_uf.append(f"razao_social = '{op_sel}'")
@@ -845,7 +1037,7 @@ elif pagina == "Score de Risco":
         if not df_uf.empty:
             fig = px.bar(df_uf, x='uf', y='custo_per_capita',
                         color='custo_per_capita', 
-                        color_continuous_scale=[[0, '#5A7099'], [0.5, '#C9A227'], [1, '#DC2626']],
+                        color_continuous_scale=[[0, PRIMARY_MUTED], [0.5, GOLD_MUTED], [1, ERROR]],
                         labels={'uf': 'UF', 'custo_per_capita': 'R$/mês'},
                         hover_data=['vidas', 'produtos', 'municipios'],
                         text=df_uf['custo_per_capita'].apply(lambda x: f'R${x:.0f}'))
@@ -853,13 +1045,12 @@ elif pagina == "Score de Risco":
             fig.update_traces(textposition='outside', textfont_size=9)
             fig.update_layout(coloraxis_showscale=False)
             st.plotly_chart(fig, use_container_width=True)
-            st.caption("Custo per capita mensal estimado por UF. Fatores geográficos baseados em VCMH/IESS e DATASUS/SIH.")
+            st.markdown('<p class="fonte-caption">Custo per capita mensal estimado por UF. Fatores geográficos: VCMH/IESS e DATASUS/SIH.</p>', unsafe_allow_html=True)
         
-        st.markdown("---")
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
         
         # Tabela de Produtos com Score de Risco
-        st.markdown("### Ranking de Produtos por Custo Per Capita")
-        st.markdown("Produtos ordenados pelo custo per capita estimado (maior risco primeiro).")
+        section_header("Ranking de Produtos por Custo Per Capita", "Maior risco primeiro")
         
         df_ranking = con.execute(f"""
             SELECT 
@@ -877,9 +1068,9 @@ elif pagina == "Score de Risco":
                 vidas_total as "Vidas",
                 ROUND(custo_per_capita_medio, 0) as "Custo PC (R$/mês)",
                 ROUND(sinistralidade_estimada * 100, 1) as "Sinist. Estimada (%)",
-                ROUND(fator_etario_medio, 2) as "Fator Etário Médio",
+                ROUND(fator_etario_medio, 2) as "Fator Etário",
                 municipios as "Municípios",
-                ROUND(despesa_estimada / 1e6, 2) as "Despesa Est. (R$ M)"
+                ROUND(despesa_estimada / 1e6, 2) as "Despesa (R$ M)"
             FROM score_risco_produto_agg {where_score}
             ORDER BY custo_per_capita_medio DESC
             LIMIT 100
@@ -891,13 +1082,13 @@ elif pagina == "Score de Risco":
         csv_score = df_ranking.to_csv(index=False).encode('utf-8')
         st.download_button("Exportar ranking (.csv)", csv_score, "score_risco_produtos.csv", "text/csv")
         
-        st.markdown("---")
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
         
         # Distribuição do Score
         col_d1, col_d2 = st.columns(2)
         
         with col_d1:
-            st.markdown("### Distribuição de Custo Per Capita")
+            section_header("Distribuição de Custo Per Capita")
             df_hist = con.execute(f"""
                 SELECT custo_per_capita_medio as custo_pc
                 FROM score_risco_produto_agg {where_score}
@@ -908,12 +1099,12 @@ elif pagina == "Score de Risco":
                               labels={'custo_pc': 'Custo Per Capita (R$/mês)', 'count': 'Produtos'},
                               color_discrete_sequence=[PRIMARY])
             fig = apply_layout(fig, height=320)
-            fig.add_vline(x=df_hist['custo_pc'].median(), line_dash="dash", line_color="#C9A227",
+            fig.add_vline(x=df_hist['custo_pc'].median(), line_dash="dash", line_color=GOLD_MUTED,
                          annotation_text=f"Mediana: R$ {df_hist['custo_pc'].median():.0f}")
             st.plotly_chart(fig, use_container_width=True)
         
         with col_d2:
-            st.markdown("### Fator Etário Médio por Segmentação")
+            section_header("Fator Etário por Segmentação")
             df_fator = con.execute(f"""
                 SELECT segmentacao, AVG(fator_etario_medio) as fator_medio, SUM(vidas_total) as vidas
                 FROM score_risco_produto_agg {where_score}
@@ -923,60 +1114,63 @@ elif pagina == "Score de Risco":
             
             fig = px.bar(df_fator, x='segmentacao', y='fator_medio',
                         labels={'segmentacao': '', 'fator_medio': 'Fator Etário Médio'},
-                        color_discrete_sequence=["#5A7099"],
+                        color_discrete_sequence=[PRIMARY_MUTED],
                         text=df_fator['fator_medio'].apply(lambda x: f'{x:.2f}'))
             fig = apply_layout(fig, height=320)
             fig.update_traces(textposition='outside')
             fig.update_layout(xaxis_tickangle=-30)
             st.plotly_chart(fig, use_container_width=True)
         
-        st.markdown("---")
-        st.markdown("""
-        **Metodologia do Score de Risco:**
-        O rateio distribui a despesa assistencial total (DIOPS) entre produtos proporcionalmente ao score de risco calculado:
-        `Score = Vidas × Fator_Etário × Fator_Geográfico × Fator_Segmentação × Fator_Contratação`.
-        Fontes: RN 63/2003 (curva etária), VCMH/IESS (geográfico), DIOPS 4T/2025 (financeiro), SIB Mar/2026 (beneficiários).
-        """)
+        st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
+        st.markdown(f"""
+        <div style="background:{SURFACE}; border-left:4px solid {PRIMARY}; padding:1rem 1.2rem; border-radius:8px; font-size:0.85rem; color:#374151;">
+            <strong style="color:{PRIMARY};">Metodologia do Score de Risco</strong><br>
+            O rateio distribui a despesa assistencial total (DIOPS) entre produtos proporcionalmente ao score de risco calculado:
+            <code style="background:#E5E7EB; padding:2px 6px; border-radius:3px;">Score = Vidas x Fator_Etário x Fator_Geográfico x Fator_Segmentação x Fator_Contratação</code><br>
+            <span style="font-size:0.75rem; color:{GRAY_500};">Fontes: RN 63/2003 (curva etária), VCMH/IESS (geográfico), DIOPS 4T/2025 (financeiro), SIB Mar/2026 (beneficiários).</span>
+        </div>
+        """, unsafe_allow_html=True)
     
     except Exception as e:
         st.error(f"Erro ao carregar Score de Risco: {e}")
     
-    st.markdown(f'<div class="t2-footer">Tallent Two Financial Holding — Motor de Sinistralidade ANS {APP_VERSION}</div>', unsafe_allow_html=True)
+    page_footer()
 
 
 # =========================================================
 # PÁGINA 6: METODOLOGIA
 # =========================================================
 elif pagina == "Metodologia":
-    st.markdown('<p class="main-header">Metodologia</p>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">Modelo de cálculo, fontes de dados e limitações conhecidas</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-header">Metodologia</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-subtitle">Modelo de cálculo, fontes de dados e limitações conhecidas</p>', unsafe_allow_html=True)
     
-    st.markdown("---")
+    st.markdown('<hr class="gold-divider">', unsafe_allow_html=True)
     
-    st.markdown("""
-### Objetivo
-
-Estimar a sinistralidade por produto a partir de dados públicos da ANS, distribuindo a despesa 
-assistencial total da operadora (DIOPS) entre seus produtos cadastrados, proporcionalmente a 
-fatores de risco conhecidos.
-
-### Modelo de Cálculo
-
-O Motor aplica a seguinte fórmula para cada produto:
-
-```
-Sinistralidade_Proxy(produto) = Sinistralidade_Total(operadora) × Peso_Relativo(produto)
-```
-
-O peso relativo é composto por quatro fatores multiplicativos:
-
-```
-Peso_Relativo = F_Segmentação × F_Contratação × F_Abrangência × F_Moderador
-```
-""")
+    st.markdown(f"""
+<div style="background:{SURFACE}; border-radius:12px; padding:1.5rem; margin-bottom:1.5rem; border:1px solid rgba(44,61,91,0.1);">
+    <h3 style="font-family:Playfair Display,serif; color:{PRIMARY}; margin:0 0 0.5rem 0; font-size:1.2rem;">Objetivo</h3>
+    <p style="font-family:Roboto,sans-serif; color:#374151; font-size:0.9rem; margin:0; line-height:1.6;">
+        Estimar a sinistralidade por produto a partir de dados públicos da ANS, distribuindo a despesa 
+        assistencial total da operadora (DIOPS) entre seus produtos cadastrados, proporcionalmente a 
+        fatores de risco conhecidos.
+    </p>
+</div>
+""", unsafe_allow_html=True)
     
-    st.markdown("---")
-    st.markdown("### Fatores de Ponderação")
+    st.markdown(f"""
+<div style="background:{WHITE}; border:1px solid #E5E7EB; border-radius:12px; padding:1.5rem; margin-bottom:1.5rem;">
+    <h3 style="font-family:Playfair Display,serif; color:{PRIMARY}; margin:0 0 0.8rem 0; font-size:1.1rem;">Modelo de Cálculo</h3>
+    <div style="background:#F9FAFB; border-radius:8px; padding:1rem; font-family:monospace; font-size:0.85rem; color:{PRIMARY}; margin-bottom:0.8rem;">
+        Sinistralidade_Estimada(produto) = Sinistralidade_Total(operadora) x Peso_Relativo(produto)
+    </div>
+    <div style="background:#F9FAFB; border-radius:8px; padding:1rem; font-family:monospace; font-size:0.85rem; color:{PRIMARY};">
+        Peso_Relativo = F_Segmentação x F_Contratação x F_Geográfico x F_Etário x F_Moderador
+    </div>
+</div>
+""", unsafe_allow_html=True)
+    
+    st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
+    section_header("Fatores de Ponderação")
     
     col1, col2 = st.columns(2)
     
@@ -1013,7 +1207,7 @@ Peso_Relativo = F_Segmentação × F_Contratação × F_Abrangência × F_Modera
 | Individual ou Familiar | 1.20 |
 """)
         
-        st.markdown("**Mecanismo de Regulação (Coparticipação)**")
+        st.markdown("**Mecanismo de Regulação**")
         st.markdown("""
 | Moderador | Fator |
 |---|---|
@@ -1023,27 +1217,34 @@ Peso_Relativo = F_Segmentação × F_Contratação × F_Abrangência × F_Modera
 | Ausente | 1.05 |
 """)
     
-    st.markdown("---")
+    st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
+    
+    section_header("Classificação de Qualidade")
     st.markdown("""
-### Classificação de Qualidade
-
-Cada estimativa recebe uma classificação baseada na disponibilidade de informação:
-
 | Qualidade | Margem de Erro | Critério |
 |---|---|---|
 | Alta | ±8% | 3+ fatores conhecidos e dados de beneficiários disponíveis |
 | Média | ±15% | 2+ fatores conhecidos |
 | Baixa | ±25% | Menos de 2 fatores disponíveis |
-
-### Limitações
-
-1. **Viés de Mix de Carteira** — Produtos deficitários podem ser subsidiados por rentáveis dentro da mesma operadora
-2. **Ausência de NTRP** — Sem acesso às premissas atuariais reais transmitidas à ANS
-3. **Defasagem Temporal** — DIOPS trimestral vs SIB mensal podem ter defasagens de até 3 meses
-4. **Dados Agregados** — O DIOPS não segrega despesa por produto; a alocação é estimada
-
-### Fontes de Dados
-
+""")
+    
+    st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
+    
+    section_header("Limitações Conhecidas")
+    st.markdown(f"""
+<div style="background:{SURFACE}; border-radius:8px; padding:1rem; font-size:0.85rem; line-height:1.8;">
+    <strong>1. Viés de Mix de Carteira</strong> — Produtos deficitários podem ser subsidiados por rentáveis dentro da mesma operadora<br>
+    <strong>2. Ausência de NTRP</strong> — Sem acesso às premissas atuariais reais transmitidas à ANS<br>
+    <strong>3. Defasagem Temporal</strong> — DIOPS trimestral vs SIB mensal podem ter defasagens de até 3 meses<br>
+    <strong>4. Dados Agregados</strong> — O DIOPS não discrimina despesa por produto, apenas por operadora<br>
+    <strong>5. Fatores Fixos</strong> — Os pesos de segmentação e contratação são baseados em literatura, não calibrados por operadora
+</div>
+""", unsafe_allow_html=True)
+    
+    st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
+    
+    section_header("Fontes de Dados")
+    st.markdown("""
 | Fonte | Período | Frequência |
 |---|---|---|
 | DIOPS (Demonstrações Contábeis) | 4T/2025 | Trimestral |
@@ -1052,10 +1253,10 @@ Cada estimativa recebe uma classificação baseada na disponibilidade de informa
 | Cadastro de Operadoras (CADOP) | Mai/2026 | Contínua |
 """)
     
-    st.markdown("---")
-    st.markdown("""
-### Roadmap de Evolução
-
+    st.markdown('<hr class="subtle-divider">', unsafe_allow_html=True)
+    
+    section_header("Roadmap de Evolução")
+    st.markdown(f"""
 | Sprint | Entrega | Status |
 |---|---|---|
 | 1 | Sinistralidade por operadora (DIOPS + SIB consolidado) | Concluído |
@@ -1063,9 +1264,9 @@ Cada estimativa recebe uma classificação baseada na disponibilidade de informa
 | 3 | Prova de conceito de granularidade (SIB individualizado) | Concluído |
 | 4 | Ingestão completa do SIB individualizado — 696k registros | Concluído |
 | 5 | Score de risco por produto e município (alocação atuarial) | Concluído |
-| 6 | Série temporal (DIOPS 2020–2025) e tendências | Planejado |
+| 6 | Série temporal (DIOPS 2020-2025) e tendências | Planejado |
 | 7 | Modelo preditivo XGBoost | Futuro |
 | 8 | API REST e interface de consulta | Futuro |
 """)
     
-    st.markdown(f'<div class="t2-footer">Tallent Two Financial Holding — Motor de Sinistralidade ANS {APP_VERSION}</div>', unsafe_allow_html=True)
+    page_footer()
