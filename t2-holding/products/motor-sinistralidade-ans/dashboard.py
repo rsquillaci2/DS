@@ -1,7 +1,7 @@
 """
 Motor de Sinistralidade ANS
 Plataforma de Inteligência Analítica — Tallent Two Financial Holding
-v2.0 — Redesign Executivo
+v2.1 — Redesign Executivo
 """
 import streamlit as st
 import duckdb
@@ -15,7 +15,7 @@ import streamlit.components.v1 as components
 # =========================================================
 # CONFIGURAÇÃO
 # =========================================================
-APP_VERSION = "v2.0"
+APP_VERSION = "v2.1"
 DB_PATH = "/home/ubuntu/mvp_sinistralidade/data/ans_analytics.duckdb"
 LOGO_PATH = "/home/ubuntu/mvp_sinistralidade/logo_t2_sidebar.png"
 
@@ -427,7 +427,7 @@ with st.sidebar:
     # Navegação em 5 grupos
     pagina = st.radio(
         "Navegação",
-        ["Resumo Executivo", "Operadoras", "Produtos e Proxy", "Tendência e Benchmark", "Metodologia"],
+        ["Resumo Executivo", "Operadoras", "Produtos e Proxy", "Tendência e Benchmark", "Predição (ML)", "Metodologia"],
         label_visibility="collapsed"
     )
     
@@ -1065,8 +1065,277 @@ elif pagina == "Tendência e Benchmark":
     page_footer()
 
 
+
 # =========================================================
-# PÁGINA 5: METODOLOGIA
+# PÁGINA: PREDIÇÃO (SPRINT 8)
+# =========================================================
+elif pagina == "Predição (ML)":
+    st.markdown(f"""
+    <div class="exec-header">
+        <p class="product-name">Modelo Preditivo XGBoost</p>
+        <p class="product-subtitle">Predição de sinistralidade e classificação de risco por produto — Sprint 8</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Carregar resultados do modelo
+    import json
+    models_dir = os.path.join(os.path.dirname(__file__), "data", "models")
+    
+    try:
+        with open(os.path.join(models_dir, "sprint8_resultados.json"), 'r') as f:
+            resultados_ml = json.load(f)
+        
+        # --- CAMADA 2: Métricas dos Modelos ---
+        section_header("Performance dos Modelos", "Métricas de avaliação no conjunto de teste")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown(f"""
+            <div style="background:{SURFACE}; border:1px solid {BORDER}; border-radius:6px; padding:1.2rem; margin-bottom:1rem;">
+                <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:{TEXT_MUTED}; margin-bottom:0.6rem; font-weight:600;">Modelo 1 — Regressão por Operadora</p>
+                <p style="font-size:0.78rem; color:{TEXT_SECONDARY}; margin-bottom:0.8rem;">Prediz sinistralidade do próximo trimestre usando série temporal</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.8rem;">
+                    <div>
+                        <p style="font-size:0.62rem; text-transform:uppercase; color:{TEXT_MUTED}; margin-bottom:0.2rem;">R²</p>
+                        <p style="font-size:1.3rem; font-weight:700; color:{PRIMARY}; margin:0;">{resultados_ml['modelo_1_operadora']['r2_test']:.3f}</p>
+                    </div>
+                    <div>
+                        <p style="font-size:0.62rem; text-transform:uppercase; color:{TEXT_MUTED}; margin-bottom:0.2rem;">MAE</p>
+                        <p style="font-size:1.3rem; font-weight:700; color:{PRIMARY}; margin:0;">{resultados_ml['modelo_1_operadora']['mae_test']:.1%}</p>
+                    </div>
+                    <div>
+                        <p style="font-size:0.62rem; text-transform:uppercase; color:{TEXT_MUTED}; margin-bottom:0.2rem;">CV MAE</p>
+                        <p style="font-size:1.3rem; font-weight:700; color:{PRIMARY}; margin:0;">{resultados_ml['modelo_1_operadora']['cv_mae_mean']:.1%}</p>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col2:
+            st.markdown(f"""
+            <div style="background:{SURFACE}; border:1px solid {BORDER}; border-radius:6px; padding:1.2rem; margin-bottom:1rem;">
+                <p style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:{TEXT_MUTED}; margin-bottom:0.6rem; font-weight:600;">Modelo 2 — Classificação por Produto</p>
+                <p style="font-size:0.78rem; color:{TEXT_SECONDARY}; margin-bottom:0.8rem;">Classifica risco de cada produto (Baixo/Médio/Alto/Crítico)</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.8rem;">
+                    <div>
+                        <p style="font-size:0.62rem; text-transform:uppercase; color:{TEXT_MUTED}; margin-bottom:0.2rem;">Accuracy</p>
+                        <p style="font-size:1.3rem; font-weight:700; color:{PRIMARY}; margin:0;">{resultados_ml['modelo_2_produto']['accuracy_test']:.1%}</p>
+                    </div>
+                    <div>
+                        <p style="font-size:0.62rem; text-transform:uppercase; color:{TEXT_MUTED}; margin-bottom:0.2rem;">F1 Weighted</p>
+                        <p style="font-size:1.3rem; font-weight:700; color:{PRIMARY}; margin:0;">{resultados_ml['modelo_2_produto']['f1_weighted_test']:.3f}</p>
+                    </div>
+                    <div>
+                        <p style="font-size:0.62rem; text-transform:uppercase; color:{TEXT_MUTED}; margin-bottom:0.2rem;">CV F1</p>
+                        <p style="font-size:1.3rem; font-weight:700; color:{PRIMARY}; margin:0;">{resultados_ml['modelo_2_produto']['cv_f1_mean']:.3f}</p>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        # --- Predições Próximo Trimestre ---
+        section_header("Predições — Próximo Trimestre", "Sinistralidade estimada para 1T/2026 por operadora")
+        
+        df_pred = pd.DataFrame(resultados_ml['predicoes'])
+        
+        # Mapa de nomes
+        nomes_ops = {
+            '310239': 'Pessoal Saúde',
+            '355097': 'Santa Helena',
+            '359017': 'Hapvida NDI',
+            '417491': 'Portomed',
+            '421197': 'Santa Casa Mauá',
+            '422371': 'SF Sistemas'
+        }
+        df_pred['operadora'] = df_pred['registro_ans'].map(nomes_ops)
+        
+        # Gráfico de predição com intervalo de confiança
+        fig_pred = go.Figure()
+        
+        # Barras de sinistralidade atual
+        fig_pred.add_trace(go.Bar(
+            x=df_pred['operadora'],
+            y=df_pred['sinistralidade_atual'],
+            name='Atual (4T/2025)',
+            marker_color=TEXT_MUTED,
+            opacity=0.6
+        ))
+        
+        # Barras de predição
+        colors_pred = [PRIMARY if t == 'Melhora' else ACCENT for t in df_pred['tendencia']]
+        fig_pred.add_trace(go.Bar(
+            x=df_pred['operadora'],
+            y=df_pred['predicao_proximo_trim'],
+            name='Predição (1T/2026)',
+            marker_color=colors_pred,
+            error_y=dict(
+                type='data',
+                symmetric=False,
+                array=(df_pred['ic_superior'] - df_pred['predicao_proximo_trim']).tolist(),
+                arrayminus=(df_pred['predicao_proximo_trim'] - df_pred['ic_inferior']).tolist(),
+                color=TEXT_MUTED,
+                thickness=1.5
+            )
+        ))
+        
+        fig_pred.update_layout(
+            barmode='group',
+            yaxis_tickformat='.0%',
+            yaxis_title='Sinistralidade',
+            showlegend=True,
+            legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1),
+            height=380,
+            margin=dict(l=50, r=20, t=40, b=60),
+            plot_bgcolor='white',
+            paper_bgcolor='white',
+            font=dict(family='Inter', size=11, color=TEXT_PRIMARY),
+            yaxis=dict(gridcolor='#F3F4F6', gridwidth=1)
+        )
+        
+        st.plotly_chart(fig_pred, use_container_width=True)
+        
+        # Insight box
+        melhoram = df_pred[df_pred['tendencia'] == 'Melhora']['operadora'].tolist()
+        pioram = df_pred[df_pred['tendencia'] == 'Piora']['operadora'].tolist()
+        
+        insight_text = f"O modelo prevê **melhora** para {', '.join(melhoram) if melhoram else 'nenhuma'} e **piora** para {', '.join(pioram) if pioram else 'nenhuma'}."
+        st.markdown(f"""
+        <div style="border-left:3px solid {PRIMARY}; padding:0.8rem 1rem; background:{SURFACE}; margin:1rem 0; border-radius:0 4px 4px 0;">
+            <p style="font-size:0.78rem; color:{TEXT_PRIMARY}; margin:0; line-height:1.5;">{insight_text}</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # --- SHAP: Feature Importance ---
+        section_header("Explicabilidade (SHAP)", "Fatores que mais influenciam a predição de sinistralidade")
+        
+        col_s1, col_s2 = st.columns(2)
+        
+        with col_s1:
+            st.markdown(f'<p style="font-size:0.72rem; font-weight:600; color:{TEXT_PRIMARY}; margin-bottom:0.5rem;">Modelo 1 — Operadora (Série Temporal)</p>', unsafe_allow_html=True)
+            fi_m1_data = resultados_ml['feature_importance_m1'][:8]
+            
+            # Nomes legíveis
+            feature_names_readable = {
+                'sinist_lag_1': 'Sinistralidade T-1',
+                'delta_sinist_1': 'Variação Trimestral',
+                'tendencia_4t': 'Tendência 4 Trim.',
+                'sinist_ma4': 'Média Móvel 4T',
+                'receita_lag_1': 'Receita T-1',
+                'sinist_lag_4': 'Sinistralidade T-4',
+                'sinist_lag_2': 'Sinistralidade T-2',
+                'receita_lag_4': 'Receita T-4',
+                'log_receita': 'Log Receita',
+                'trim_num': 'Trimestre (Sazonalidade)',
+                'receita_growth_4t': 'Crescimento Receita 12m',
+                'tipo_operadora_enc': 'Tipo de Operadora'
+            }
+            
+            fig_shap1 = go.Figure(go.Bar(
+                x=[d['shap_mean_abs'] for d in fi_m1_data],
+                y=[feature_names_readable.get(d['feature'], d['feature']) for d in fi_m1_data],
+                orientation='h',
+                marker_color=PRIMARY
+            ))
+            fig_shap1.update_layout(
+                height=280,
+                margin=dict(l=140, r=20, t=10, b=30),
+                xaxis_title='SHAP Mean |Value|',
+                plot_bgcolor='white',
+                paper_bgcolor='white',
+                font=dict(family='Inter', size=10, color=TEXT_PRIMARY),
+                yaxis=dict(autorange='reversed')
+            )
+            st.plotly_chart(fig_shap1, use_container_width=True)
+        
+        with col_s2:
+            st.markdown(f'<p style="font-size:0.72rem; font-weight:600; color:{TEXT_PRIMARY}; margin-bottom:0.5rem;">Modelo 2 — Produto (Cross-Section)</p>', unsafe_allow_html=True)
+            fi_m2_data = resultados_ml['feature_importance_m2'][:8]
+            
+            feature_names_readable_m2 = {
+                'registro_ans_enc': 'Operadora',
+                'sinist_total_operadora': 'Sinistralidade da Operadora',
+                'custo_per_capita_medio': 'Custo Per Capita',
+                'proporcao_score_vidas': 'Score/Vidas',
+                'log_vidas': 'Log Vidas',
+                'municipios': 'Qtd Municípios',
+                'fator_etario_medio': 'Fator Etário Médio',
+                'concentracao_geo': 'Concentração Geográfica',
+                'segmentacao_enc': 'Segmentação',
+                'tipo_contratacao_enc': 'Tipo Contratação',
+                'abrangencia_enc': 'Abrangência',
+                'ufs': 'Qtd UFs'
+            }
+            
+            fig_shap2 = go.Figure(go.Bar(
+                x=[d['shap_mean_abs'] for d in fi_m2_data],
+                y=[feature_names_readable_m2.get(d['feature'], d['feature']) for d in fi_m2_data],
+                orientation='h',
+                marker_color=ACCENT
+            ))
+            fig_shap2.update_layout(
+                height=280,
+                margin=dict(l=160, r=20, t=10, b=30),
+                xaxis_title='SHAP Mean |Value|',
+                plot_bgcolor='white',
+                paper_bgcolor='white',
+                font=dict(family='Inter', size=10, color=TEXT_PRIMARY),
+                yaxis=dict(autorange='reversed')
+            )
+            st.plotly_chart(fig_shap2, use_container_width=True)
+        
+        # Interpretação
+        st.markdown(f"""
+        <div style="border-left:3px solid {PRIMARY}; padding:0.8rem 1rem; background:{SURFACE}; margin:1rem 0; border-radius:0 4px 4px 0;">
+            <p style="font-size:0.72rem; font-weight:600; color:{TEXT_PRIMARY}; margin-bottom:0.3rem;">Interpretação SHAP</p>
+            <p style="font-size:0.72rem; color:{TEXT_SECONDARY}; margin:0; line-height:1.5;">
+                <strong>Modelo 1:</strong> A sinistralidade do trimestre anterior (lag 1) é o fator dominante, seguido pela variação recente e tendência de 4 trimestres. Isso confirma que a sinistralidade tem forte inércia temporal.<br>
+                <strong>Modelo 2:</strong> A operadora em si é o fator mais importante (cada uma tem sua estrutura de custo), seguido pela sinistralidade total e custo per capita. Fatores de produto (segmentação, contratação) têm peso menor.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # --- Tabela de Predições ---
+        section_header("Detalhamento das Predições", "Valores numéricos com intervalo de confiança")
+        
+        df_display = df_pred[['operadora', 'sinistralidade_atual', 'predicao_proximo_trim', 'ic_inferior', 'ic_superior', 'delta_previsto', 'tendencia']].copy()
+        df_display.columns = ['Operadora', 'Sinist. Atual', 'Predição 1T/2026', 'IC Inferior', 'IC Superior', 'Delta', 'Tendência']
+        
+        # Formatar
+        for col in ['Sinist. Atual', 'Predição 1T/2026', 'IC Inferior', 'IC Superior', 'Delta']:
+            df_display[col] = df_display[col].apply(lambda x: f"{x:.1%}" if abs(x) < 2 else f"{x:.4f}")
+        
+        st.dataframe(df_display, use_container_width=True, hide_index=True)
+        
+        # Governança
+        with st.expander("Governança — Modelo Preditivo"):
+            st.markdown(f"""
+            **Metodologia:**
+            - Modelo 1: XGBoost Regressor com 12 features temporais (lags, médias móveis, tendências)
+            - Modelo 2: XGBoost Classifier com 12 features de produto (segmentação, porte, geografia)
+            - Validação: Time Series Split (3 folds) para Modelo 1, Stratified K-Fold (5 folds) para Modelo 2
+            
+            **Limitações:**
+            - Modelo 1 treinado com apenas 108 registros (6 operadoras × 18 trimestres úteis)
+            - Modelo 2 tem desbalanceamento de classes (97.5% Médio, 2.1% Alto, 0.4% Baixo)
+            - Predições assumem continuidade das condições atuais (sem eventos disruptivos)
+            - Intervalo de confiança baseado no MAE do teste (±1.7 pp)
+            
+            **Fontes:**
+            - DIOPS 2020-2025 (24 trimestres × 6 operadoras)
+            - Score de Risco Sprint 5 (1.793 produtos)
+            - XGBoost 2.0 + SHAP 0.44
+            """)
+    
+    except FileNotFoundError:
+        st.warning("Modelos ainda não treinados. Execute sprint8_xgboost.py primeiro.")
+    
+    page_footer()
+
+
+
+# =========================================================
+# PÁGINA 6: METODOLOGIA
 # =========================================================
 elif pagina == "Metodologia":
     st.markdown(f"""
