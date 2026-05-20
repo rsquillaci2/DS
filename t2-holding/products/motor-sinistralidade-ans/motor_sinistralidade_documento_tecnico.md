@@ -298,79 +298,6 @@ ans_analytics.duckdb (34 MB)
 
 ## 3. Roadmap Futuro — Sprints 9 a 11
 
-**Escopo Técnico:**
-
-| Componente | Detalhe |
-|---|---|
-| Algoritmo | XGBoost (Regressor + Classifier) |
-| Dados de treino (Modelo 1) | 132 registros × 16 features (nível operadora, série temporal) |
-| Dados de treino (Modelo 2) | 59.635 clusters × 12 features (nível produto, cross-section) |
-| Validação | TimeSeriesSplit (Modelo 1), KFold estratificado (Modelo 2) |
-| Explicabilidade | SHAP Values (feature importance + waterfall plots) |
-| Output | Predição de sinistralidade + intervalo de confiança + alertas |
-
-**Features do Modelo 1 (Operadora — Série Temporal):**
-
-| # | Feature | Tipo | Fonte |
-|---|---|---|---|
-| 1 | `receita_trimestral` | Contínua | DIOPS |
-| 2 | `despesa_trimestral` | Contínua | DIOPS |
-| 3 | `sinistralidade_lag_1` | Contínua | Calculada |
-| 4 | `sinistralidade_lag_2` | Contínua | Calculada |
-| 5 | `sinistralidade_lag_4` | Contínua | Calculada (sazonalidade) |
-| 6 | `cagr_receita_12m` | Contínua | Calculada |
-| 7 | `delta_sinistralidade_12m` | Contínua | Calculada |
-| 8 | `trimestre_ano` | Categórica | DIOPS (1T, 2T, 3T, 4T) |
-| 9 | `porte_operadora` | Contínua | DIOPS (receita total) |
-| 10 | `tipo_operadora` | Categórica | CADOP |
-| 11 | `vidas_total` | Contínua | SIB |
-| 12 | `fator_etario_medio` | Contínua | Score de Risco |
-| 13 | `concentracao_geografica` | Contínua | SIB Granular |
-| 14 | `vcmh_periodo` | Contínua | IESS |
-| 15 | `receita_per_capita` | Contínua | DIOPS / SIB |
-| 16 | `margem_vs_benchmark` | Contínua | Benchmark |
-
-**Features do Modelo 2 (Produto — Cross-Section):**
-
-| # | Feature | Tipo | Fonte |
-|---|---|---|---|
-| 1 | `vidas` | Contínua | SIB Granular |
-| 2 | `fator_etario_medio` | Contínua | Score de Risco |
-| 3 | `fator_geografico` | Contínua | VCMH/UF |
-| 4 | `segmentacao` | Categórica | Cadastro Produtos |
-| 5 | `tipo_contratacao` | Categórica | SIB Granular |
-| 6 | `abrangencia` | Categórica | Cadastro Produtos |
-| 7 | `moderador` | Categórica | Cadastro Produtos |
-| 8 | `concentracao_municipal` | Contínua | SIB Granular |
-| 9 | `proporcao_idosos` | Contínua | SIB Granular (59+/total) |
-| 10 | `proporcao_individual` | Contínua | SIB Granular |
-| 11 | `sinistralidade_operadora` | Contínua | DIOPS |
-| 12 | `porte_operadora` | Contínua | DIOPS |
-
-**Target:**
-- Modelo 1: `sinistralidade_proximo_trimestre` (regressão, [0, 1.5])
-- Modelo 2: `classificacao_risco` (4 classes: Baixo < 70%, Médio 70-80%, Alto 80-90%, Crítico > 90%)
-
-**Hiperparâmetros Planejados:**
-
-```python
-xgb_params = {
-    'max_depth': 4,
-    'learning_rate': 0.05,
-    'n_estimators': 200,
-    'min_child_weight': 3,
-    'subsample': 0.8,
-    'colsample_bytree': 0.8,
-    'reg_alpha': 0.1,
-    'reg_lambda': 1.0,
-    'early_stopping_rounds': 20
-}
-```
-
-
-
----
-
 ### Sprint 9 — API REST
 
 **Objetivo:** Expor o Motor de Sinistralidade como uma API programática para integração com outros sistemas (CRM, cotadores, plataformas de gestão).
@@ -706,10 +633,10 @@ GET  /v1/health
 ## 4. Visão de Produto — Maturidade
 
 ```
-FASE 1 (Concluída)          FASE 2 (Sprints 8-10)       FASE 3 (Sprint 11+)
+FASE 1 (Concluída)          FASE 2 (Em Andamento)       FASE 3 (Sprint 11+)
 ━━━━━━━━━━━━━━━━━━━         ━━━━━━━━━━━━━━━━━━━         ━━━━━━━━━━━━━━━━━━━
 MVP Analítico               Motor Inteligente           Produto Comercial
-• Dados reais ANS           • Predição ML               • Interface dedicada
+• Dados reais ANS           • Predição ML ✅             • Interface dedicada
 • 6 operadoras              • API programática          • Multi-tenant
 • Dashboard Streamlit       • Atualização automática    • SaaS-ready
 • Score de risco            • Alertas proativos         • Relatórios PDF
@@ -727,11 +654,12 @@ Sprint 8 (XGBoost) ──────→ Sprint 9 (API) ──────→ Sp
                            Sprint 10 (Pipeline)
 ```
 
-- **Sprint 8** é pré-requisito para Sprint 9 (a API expõe o modelo)
+- **Sprint 8** ✅ CONCLUÍDO — pré-requisito para Sprint 9 (a API expõe o modelo)
 - **Sprint 9** é pré-requisito para Sprint 11 (o frontend consome a API)
 - **Sprint 10** é independente e pode rodar em paralelo com Sprint 9 ou 11
 - **Sprint 11** depende de Sprint 9 estar funcional
 
 ---
 
-*Documento gerado automaticamente pelo Motor de Sinistralidade ANS — Tallent Two Financial Holding*
+*Documento Técnico — Motor de Sinistralidade ANS — Tallent Two Financial Holding*  
+*Autor: Ricardo Squillaci*
