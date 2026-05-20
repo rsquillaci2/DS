@@ -1163,7 +1163,7 @@ elif pagina == "Predição (ML)":
         ))
         
         # Barras de predição
-        colors_pred = [PRIMARY if t == 'Melhora' else ACCENT for t in df_pred['tendencia']]
+        colors_pred = [SUCCESS if t == 'Melhora' else WARNING for t in df_pred['tendencia']]
         fig_pred.add_trace(go.Bar(
             x=df_pred['operadora'],
             y=df_pred['predicao_proximo_trim'],
@@ -1271,7 +1271,7 @@ elif pagina == "Predição (ML)":
                 x=[d['shap_mean_abs'] for d in fi_m2_data],
                 y=[feature_names_readable_m2.get(d['feature'], d['feature']) for d in fi_m2_data],
                 orientation='h',
-                marker_color=ACCENT
+                marker_color=PRIMARY_MUTED
             ))
             fig_shap2.update_layout(
                 height=280,
