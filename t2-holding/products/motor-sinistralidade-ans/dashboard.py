@@ -406,7 +406,7 @@ with st.sidebar:
     # Navegação
     pagina = st.radio(
         "Navegação",
-        ["Visão Geral", "Análise por Operadora", "Proxy por Produto", "Granularidade", "Score de Risco", "Série Temporal", "Metodologia"],
+        ["Visão Geral", "Análise por Operadora", "Proxy por Produto", "Granularidade", "Score de Risco", "Série Temporal", "Benchmark IESS", "Metodologia"],
         label_visibility="collapsed"
     )
     
@@ -1385,6 +1385,227 @@ elif pagina == "Série Temporal":
 # =========================================================
 # PÁGINA 7: METODOLOGIA
 # =========================================================
+
+elif pagina == "Benchmark IESS":
+    st.markdown('<p class="page-header">Benchmark de Mercado</p>', unsafe_allow_html=True)
+    st.markdown('<p class="page-subtitle">Comparação com indicadores IESS, ANS e UNIDAS 2024</p>', unsafe_allow_html=True)
+    
+    try:
+        con_b = duckdb.connect(DB_PATH, read_only=True)
+        
+        # KPIs de Benchmark
+        benchmark_data = con_b.execute("""
+            SELECT 
+                nome_operadora,
+                tipo_operadora,
+                ROUND(sinistralidade_operadora, 1) AS sinist_real,
+                ROUND(benchmark_sinistralidade, 1) AS benchmark,
+                ROUND(delta_vs_benchmark, 1) AS delta,
+                classificacao_benchmark,
+                SUM(total_vidas) AS vidas,
+                ROUND(AVG(custo_percapita_mensal), 0) AS custo_pc
+            FROM resultado_benchmark
+            WHERE nome_operadora IS NOT NULL
+            GROUP BY nome_operadora, tipo_operadora, sinistralidade_operadora, 
+                     benchmark_sinistralidade, delta_vs_benchmark, classificacao_benchmark
+            ORDER BY delta_vs_benchmark
+        """).fetchdf()
+        
+        # Mercado referência
+        sinist_mercado = 82.2
+        
+        n_eficientes = len(benchmark_data[benchmark_data['delta'] < -5])
+        n_pressao = len(benchmark_data[benchmark_data['delta'] > 5])
+        custo_medio = benchmark_data['custo_pc'].mean()
+        
+        kpis_bench = [
+            {"icon": ICON_CHART, "label": "Sinistralidade Mercado", "value": f"{sinist_mercado}%", "delta": "4T/2024 ANS"},
+            {"icon": ICON_MONEY, "label": "Custo Per Capita Médio", "value": f"R$ {custo_medio:,.0f}/mês"},
+            {"icon": ICON_CHECK, "label": "Abaixo do Benchmark", "value": f"{n_eficientes} operadoras", "delta": "Eficientes", "positive": True},
+            {"icon": ICON_ALERT, "label": "Acima do Benchmark", "value": f"{n_pressao} operadoras", "delta": "Pressão", "positive": False},
+        ]
+        render_kpis(kpis_bench)
+        
+        st.markdown('<div class="gold-divider"></div>', unsafe_allow_html=True)
+        
+        # Gráfico: Operadoras vs Benchmark
+        section_header("Sinistralidade Real vs Benchmark de Mercado", "Comparação com referência por tipo de operadora")
+        
+        import plotly.graph_objects as go
+        
+        fig_bench = go.Figure()
+        
+        # Barras de sinistralidade real
+        fig_bench.add_trace(go.Bar(
+            x=benchmark_data['nome_operadora'],
+            y=benchmark_data['sinist_real'],
+            name='Sinistralidade Real',
+            marker_color=PRIMARY,
+            text=benchmark_data['sinist_real'].apply(lambda x: f'{x:.1f}%'),
+            textposition='outside'
+        ))
+        
+        # Barras de benchmark
+        fig_bench.add_trace(go.Bar(
+            x=benchmark_data['nome_operadora'],
+            y=benchmark_data['benchmark'],
+            name='Benchmark (Tipo)',
+            marker_color=GOLD,
+            text=benchmark_data['benchmark'].apply(lambda x: f'{x:.1f}%'),
+            textposition='outside'
+        ))
+        
+        # Linha de mercado
+        fig_bench.add_hline(y=sinist_mercado, line_dash="dash", line_color="#E53E3E",
+                           annotation_text=f"Mercado Total: {sinist_mercado}%")
+        
+        fig_bench.update_layout(
+            barmode='group',
+            yaxis_title="Sinistralidade (%)",
+            yaxis_range=[0, 100],
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+            **apply_layout()
+        )
+        st.plotly_chart(fig_bench, use_container_width=True)
+        
+        st.markdown('<div class="subtle-divider"></div>', unsafe_allow_html=True)
+        
+        # Tabela de classificação
+        section_header("Classificação vs Benchmark", "Delta em pontos percentuais em relação à referência do tipo")
+        
+        col_bench1, col_bench2 = st.columns([3, 2])
+        
+        with col_bench1:
+            display_df = benchmark_data[['nome_operadora', 'tipo_operadora', 'sinist_real', 'benchmark', 'delta', 'classificacao_benchmark', 'vidas']].copy()
+            display_df.columns = ['Operadora', 'Tipo', 'Sinistralidade', 'Benchmark', 'Delta (pp)', 'Classificação', 'Vidas']
+            display_df['Sinistralidade'] = display_df['Sinistralidade'].apply(lambda x: f'{x:.1f}%')
+            display_df['Benchmark'] = display_df['Benchmark'].apply(lambda x: f'{x:.1f}%')
+            display_df['Delta (pp)'] = display_df['Delta (pp)'].apply(lambda x: f'{x:+.1f}')
+            display_df['Vidas'] = display_df['Vidas'].apply(lambda x: f'{x:,.0f}')
+            st.dataframe(display_df, use_container_width=True, hide_index=True)
+        
+        with col_bench2:
+            # Pie chart de classificação
+            class_counts = benchmark_data['classificacao_benchmark'].value_counts()
+            fig_class = go.Figure(data=[go.Pie(
+                labels=class_counts.index,
+                values=class_counts.values,
+                hole=0.4,
+                marker_colors=[PRIMARY, GOLD, '#E53E3E'][:len(class_counts)]
+            )])
+            fig_class.update_layout(
+                title="Distribuição por Classificação",
+                **apply_layout()
+            )
+            st.plotly_chart(fig_class, use_container_width=True)
+        
+        st.markdown('<div class="gold-divider"></div>', unsafe_allow_html=True)
+        
+        # VCMH Histórica
+        section_header("VCMH/IESS — Inflação Médica Histórica", "Variação de Custos Médico-Hospitalares (fonte: IESS)")
+        
+        vcmh_data = con_b.execute("""
+            SELECT categoria AS ano, valor AS vcmh 
+            FROM benchmark_mercado 
+            WHERE indicador = 'vcmh_anual'
+            ORDER BY categoria
+        """).fetchdf()
+        
+        if not vcmh_data.empty:
+            fig_vcmh = go.Figure()
+            fig_vcmh.add_trace(go.Scatter(
+                x=vcmh_data['ano'],
+                y=vcmh_data['vcmh'],
+                mode='lines+markers+text',
+                text=vcmh_data['vcmh'].apply(lambda x: f'{x:.1f}%'),
+                textposition='top center',
+                line=dict(color=PRIMARY, width=3),
+                marker=dict(size=10, color=GOLD)
+            ))
+            fig_vcmh.add_hline(y=0, line_dash="dot", line_color="#999")
+            fig_vcmh.update_layout(
+                yaxis_title="VCMH (%)",
+                xaxis_title="Ano",
+                **apply_layout()
+            )
+            st.plotly_chart(fig_vcmh, use_container_width=True)
+        
+        st.markdown('<div class="subtle-divider"></div>', unsafe_allow_html=True)
+        
+        # Composição da Despesa Assistencial
+        section_header("Composição da Despesa Assistencial", "Peso de cada item na despesa total (fonte: IESS Set/2023)")
+        
+        comp_data = con_b.execute("""
+            SELECT categoria, valor 
+            FROM benchmark_mercado 
+            WHERE indicador = 'composicao_despesa'
+            ORDER BY valor DESC
+        """).fetchdf()
+        
+        if not comp_data.empty:
+            fig_comp = go.Figure(data=[go.Pie(
+                labels=comp_data['categoria'].str.capitalize(),
+                values=comp_data['valor'],
+                hole=0.4,
+                marker_colors=[PRIMARY, '#4A6FA5', GOLD, '#C9A227', SURFACE]
+            )])
+            fig_comp.update_layout(
+                title="Composição da Despesa (IESS Set/2023)",
+                **apply_layout()
+            )
+            st.plotly_chart(fig_comp, use_container_width=True)
+        
+        st.markdown('<div class="gold-divider"></div>', unsafe_allow_html=True)
+        
+        # Top Produtos mais caros vs benchmark
+        section_header("Top 20 Produtos por Custo Per Capita", "Produtos com maior custo estimado mensal por beneficiário")
+        
+        top_prods = con_b.execute("""
+            SELECT 
+                nome_operadora AS "Operadora",
+                uf AS "UF",
+                cd_plano AS "Produto",
+                tipo_contratacao AS "Contratação",
+                total_vidas AS "Vidas",
+                ROUND(custo_percapita_mensal, 2) AS "Custo/Mês (R$)",
+                ROUND(fator_etario_medio, 2) AS "Fator Etário",
+                ROUND(fator_geografico_medio, 2) AS "Fator Geográfico"
+            FROM resultado_benchmark
+            WHERE custo_percapita_mensal > 0 AND total_vidas >= 50
+            ORDER BY custo_percapita_mensal DESC
+            LIMIT 20
+        """).fetchdf()
+        
+        if not top_prods.empty:
+            top_prods['Custo/Mês (R$)'] = top_prods['Custo/Mês (R$)'].apply(lambda x: f'R$ {x:,.2f}')
+            top_prods['Vidas'] = top_prods['Vidas'].apply(lambda x: f'{x:,.0f}')
+            st.dataframe(top_prods, use_container_width=True, hide_index=True)
+            
+            csv_bench = top_prods.to_csv(index=False).encode('utf-8')
+            st.download_button("Download Top Produtos (CSV)", csv_bench, "top_produtos_custo.csv", "text/csv")
+        
+        # Fontes
+        st.markdown(f"""
+        <div style="margin-top:2rem; padding:1rem; background:{SURFACE}; border-radius:4px;">
+            <strong style="color:{PRIMARY};">Fontes de Benchmark</strong><br>
+            <span style="font-size:0.85rem; color:#666;">
+            • VCMH/IESS — Variação de Custos Médico-Hospitalares (Edição Abril/2026, data-base Set/2023)<br>
+            • Panorama ANS — Saúde Suplementar, 8ª Edição (Mar/2025)<br>
+            • Pesquisa Nacional UNIDAS 2023 — Custo assistencial per capita por região<br>
+            • ANS Dados Econômico-Financeiros 2024 — Sinistralidade 4T/2024: 82.2%<br>
+            • Fatores geográficos calibrados com despesa per capita regional (IESS + ANS)
+            </span>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        con_b.close()
+        
+    except Exception as e:
+        st.error(f"Erro ao carregar Benchmark: {e}")
+        import traceback
+        st.code(traceback.format_exc())
+
+
 elif pagina == "Metodologia":
     st.markdown('<p class="page-header">Metodologia</p>', unsafe_allow_html=True)
     st.markdown('<p class="page-subtitle">Modelo de cálculo, fontes de dados e limitações conhecidas</p>', unsafe_allow_html=True)
