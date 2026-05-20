@@ -375,7 +375,7 @@ def load_operadoras_data():
     df = con.execute("""
         SELECT 
             CAST(s.registro_ans AS VARCHAR) as registro_ans,
-            o.Nome_Fantasia as nome_operadora,
+            COALESCE(o.Nome_Fantasia, o.Razao_Social) as nome_operadora,
             o.Modalidade as modalidade,
             s.receita_contraprestacoes as receita,
             s.despesa_assistencial as despesa,
@@ -444,6 +444,12 @@ with st.sidebar:
     st.markdown(f'<p style="font-size:0.62rem; color:{TEXT_MUTED}; letter-spacing:0.04em;">{APP_VERSION} — Tallent Two Financial Holding</p>', unsafe_allow_html=True)
 
 
+# Mapeamento global de nomes curtos para exibição
+NOMES_CURTOS = {
+    '310239': 'Pessoal Saúde', '355097': 'Santa Helena', '359017': 'Hapvida NDI',
+    '417491': 'Portomed', '421197': 'Santa Casa Mauá', '422371': 'SF Sistemas'
+}
+
 # =========================================================
 # PÁGINA 1: RESUMO EXECUTIVO
 # =========================================================
@@ -483,7 +489,7 @@ if pagina == "Resumo Executivo":
     
     df_chart = df_ops.copy()
     df_chart['sinistralidade_pct'] = df_chart['sinistralidade'] * 100
-    df_chart['nome_display'] = df_chart['nome_operadora'].fillna(df_chart['registro_ans'])
+    df_chart['nome_display'] = df_chart['registro_ans'].map(NOMES_CURTOS).fillna(df_chart['nome_operadora'])
     
     fig = px.bar(
         df_chart.sort_values('sinistralidade_pct', ascending=True),
@@ -537,6 +543,8 @@ if pagina == "Resumo Executivo":
     # Tabela detalhada
     section_header("Detalhamento Financeiro", "Dados consolidados por operadora")
     df_display = df_ops[['registro_ans', 'nome_operadora', 'modalidade', 'receita', 'despesa', 'sinistralidade']].copy()
+    # Aplicar nomes curtos na tabela
+    df_display['nome_operadora'] = df_display['registro_ans'].map(NOMES_CURTOS).fillna(df_display['nome_operadora'])
     df_display.columns = ['Registro ANS', 'Operadora', 'Modalidade', 'Receita', 'Despesa Assistencial', 'Sinistralidade']
     df_display['Receita'] = df_display['Receita'].apply(lambda x: f"R$ {x/1e6:,.1f} M")
     df_display['Despesa Assistencial'] = df_display['Despesa Assistencial'].apply(lambda x: f"R$ {x/1e6:,.1f} M")
@@ -568,8 +576,8 @@ elif pagina == "Operadoras":
     df_ops = load_operadoras_data()
     df_benef = load_beneficiarios()
     
-    # Filtro
-    opcoes = df_ops['nome_operadora'].fillna(df_ops['registro_ans']).tolist()
+    # Filtro - usar nomes curtos
+    opcoes = df_ops['registro_ans'].map(NOMES_CURTOS).fillna(df_ops['nome_operadora']).tolist()
     registros = df_ops['registro_ans'].tolist()
     selected_nome = st.selectbox("Operadora", opcoes)
     idx = opcoes.index(selected_nome)
