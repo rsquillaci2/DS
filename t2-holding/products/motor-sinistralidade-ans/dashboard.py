@@ -331,7 +331,7 @@ def load_operadoras_cadastro():
     con = get_connection()
     df = con.execute(f"""
         SELECT 
-            REGISTRO_OPERADORA as registro_ans,
+            LTRIM(REGISTRO_OPERADORA, '0') as registro_ans,
             COALESCE(NULLIF(Nome_Fantasia, ''), Razao_Social) as nome,
             Razao_Social as razao_social,
             Modalidade as modalidade
@@ -343,10 +343,16 @@ def load_operadoras_cadastro():
 @st.cache_data
 def get_nome_operadora(registro_ans):
     """Resolve nome de exibição de uma operadora pelo registro ANS."""
+    reg = str(registro_ans).lstrip('0') or '0'
     cadastro = load_operadoras_cadastro()
-    match = cadastro[cadastro['registro_ans'] == str(registro_ans)]
+    match = cadastro[cadastro['registro_ans'] == reg]
     if not match.empty:
         return match.iloc[0]['nome']
+    # Fallback: operadoras_classificacao table
+    con = get_connection()
+    r = con.execute(f"SELECT nome_operadora FROM operadoras_classificacao WHERE registro_ans = '{reg}'").fetchone()
+    if r and r[0]:
+        return r[0]
     return str(registro_ans)
 
 
@@ -357,14 +363,21 @@ def load_operadoras_data():
     df = con.execute(f"""
         SELECT 
             CAST(s.registro_ans AS VARCHAR) as registro_ans,
-            COALESCE(NULLIF(o.Nome_Fantasia, ''), o.Razao_Social, CAST(s.registro_ans AS VARCHAR)) as nome_operadora,
-            o.Modalidade as modalidade,
+            COALESCE(
+                NULLIF(o.Nome_Fantasia, ''), 
+                o.Razao_Social, 
+                oc.nome_operadora,
+                CAST(s.registro_ans AS VARCHAR)
+            ) as nome_operadora,
+            COALESCE(o.Modalidade, oc.modalidade) as modalidade,
             s.receita_contraprestacoes as receita,
             s.despesa_assistencial as despesa,
             s.sinistralidade_total as sinistralidade
         FROM sinistralidade_operadora s
         LEFT JOIN read_csv_auto('{OPERADORAS_CSV}', delim=';', header=true) o
-        ON CAST(s.registro_ans AS VARCHAR) = o.REGISTRO_OPERADORA
+            ON CAST(s.registro_ans AS VARCHAR) = LTRIM(o.REGISTRO_OPERADORA, '0')
+        LEFT JOIN operadoras_classificacao oc
+            ON s.registro_ans = oc.registro_ans
         WHERE s.sinistralidade_total IS NOT NULL
         ORDER BY s.receita_contraprestacoes DESC
     """).df()
