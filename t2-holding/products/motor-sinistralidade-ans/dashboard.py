@@ -395,6 +395,17 @@ def load_beneficiarios():
 
 
 @st.cache_data
+def load_evolucao_beneficiarios():
+    """Carrega série temporal suavizada de beneficiários (forward-fill por sub-plano)."""
+    con = get_connection()
+    return con.execute("""
+        SELECT registro_ans, cobertura, mes_competencia, total_beneficiarios
+        FROM sib_evolucao_temporal
+        ORDER BY registro_ans, mes_competencia
+    """).df()
+
+
+@st.cache_data
 def load_score_risco():
     con = get_connection()
     return con.execute("SELECT * FROM score_risco_produto_agg").df()
@@ -651,16 +662,16 @@ elif pagina == "Operadoras":
             fig = apply_layout(fig, height=280, show_legend=True)
             st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
         
-        # Evolução temporal
+        # Evolução temporal (usando série suavizada)
         st.markdown('<hr class="divider-subtle">', unsafe_allow_html=True)
         section_header("Evolução de Beneficiários", "Cobertura médico-hospitalar")
-        df_med = df_benef_op[df_benef_op['cobertura'].str.contains('dico', case=False, na=False)]
-        df_evol = df_med.groupby('mes_competencia')['total_beneficiarios'].sum().reset_index()
+        df_evol_all = load_evolucao_beneficiarios()
+        df_evol_op = df_evol_all[df_evol_all['registro_ans'] == selected_reg]
+        df_med_evol = df_evol_op[df_evol_op['cobertura'].str.contains('dico', case=False, na=False)]
+        df_evol = df_med_evol.groupby('mes_competencia')['total_beneficiarios'].sum().reset_index()
         df_evol = df_evol.sort_values('mes_competencia')
         
         if not df_evol.empty:
-            mediana = df_evol['total_beneficiarios'].median()
-            df_evol = df_evol[df_evol['total_beneficiarios'] >= mediana * 0.5]
             df_evol['mes_date'] = pd.to_datetime(df_evol['mes_competencia'].astype(str) + '01', format='%Y%m%d')
             df_evol = df_evol.sort_values('mes_date')
             

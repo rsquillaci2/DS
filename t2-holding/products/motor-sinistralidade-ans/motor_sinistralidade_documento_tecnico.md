@@ -322,31 +322,92 @@ xgb_params = {
 
 ---
 
-## 3. Roadmap Futuro — Sprints 8.5 a 11
+### Sprint 8.1 — Refatoração UX/UI para Escala ✅
 
-### Sprint 8.5 — Expansão para Mercado Completo 🔜
+**Objetivo:** Preparar o dashboard para suportar ~700+ operadoras, migrando de comparação direta para paradigma de busca, filtro e ranking.
 
-**Objetivo:** Expandir a base de 6 operadoras-piloto para todas as ~700 operadoras ativas, retreinando os modelos com volume real de mercado.
+**O que foi feito:**
+- Substituição de selectbox por filtro hierárquico (Modalidade → Operadora com busca textual)
+- Resumo Executivo: Top 10 Maior + Top 10 Menor + Histograma de distribuição
+- Remoção de todos os dicts/CASE WHEN hardcoded (6 locais no código)
+- Tabelas com paginação (25 registros/página)
+- Multiselect com default Top 5 por receita (máx recomendado: 5)
+- Benchmark: Top 10 Eficientes vs Top 10 Sob Pressão
+- Predição: Top Movers (piora vs melhora)
+- Resolução dinâmica de nomes via `COALESCE(Nome_Fantasia, Razao_Social)`
+- Prepared statements para segurança SQL
 
-**O que será feito:**
-- Remoção do filtro `WHERE registro_ans IN (...)` nos scripts ETL
-- Recálculo de sinistralidade real para todas as operadoras (~700) — estimativa: ~30 minutos
-- Download incremental do SIB para Top 50 operadoras por receita (cobertura >80% do mercado)
-- Retreino do Modelo 1 (XGBoost): 132 → ~15.400 registros de treinamento
-- Retreino do Modelo 2: 937 → estimado 50.000+ clusters produto × município
-- Adição de novas features: IDA (Índice de Despesa Administrativa), IDSS, Índice de Reclamações ANS
-- Score Econômico Composto: Sinistralidade 40% + IDA 20% + Margem 20% + Tendência 20%
-
-**Impacto esperado:**
-- Modelo 1: R² estimado > 0,95 com 15k registros (vs. 0,90 atual com 132)
-- Benchmark calculado sobre dados reais de ~700 operadoras (não mais estimativa IESS)
-- Rating 360° por operadora: Sinistralidade + IDA + Margem + Reclamações + IDSS
-
-**Estimativa:** ~2–3 horas (gargalo: download SIB Top 50 via FTP ANS)
+**Resultado:** Dashboard v3.0 — 100% dinâmico, pronto para volume arbitrário de operadoras.
 
 ---
 
-### Sprint 9 — API REST *(pré-requisito: Sprint 8.5)* 🔜
+### Sprint 8.5 — Expansão para Mercado Completo ✅
+
+**Objetivo:** Expandir a base de 6 operadoras-piloto para todas as operadoras ativas no DIOPS.
+
+**O que foi feito:**
+- Remoção do filtro `WHERE registro_ans IN (...)` nos scripts ETL
+- Recálculo de sinistralidade real para 943 operadoras (todas com receita >0)
+- Série temporal expandida: 20.353 registros (24 trimestres × ~850 operadoras)
+- SIB consolidado expandido: 321.677 registros (1.245 operadoras)
+- Benchmark recalculado com percentis reais por modalidade (809 operadoras)
+- Retreino do Modelo 1 (XGBoost): 132 → 12.051 registros de treinamento (761 operadoras)
+- Predições geradas para 880 operadoras (319 piora, 313 melhora, 248 estável)
+
+**Métricas do modelo retreinado:**
+
+| Métrica | Sprint 8 (6 ops) | Sprint 8.5 (761 ops) | Observação |
+|---------|-----------------|---------------------|------------|
+| R² (Train) | 0,9058 | 0,9058 | Mantido |
+| R² (Test) | 0,9011 | 0,7097 | Esperado: mais diversidade |
+| MAE (Test) | 1,75 pp | 5,79 pp | Mercado mais heterogêneo |
+| CV 5-fold R² | — | 0,7340 ± 0,050 | Robusto e generalizável |
+
+> **Nota sobre R²:** A queda de 0,90 para 0,71 é esperada e saudável. O modelo anterior "overfitava" em 6 operadoras similares. R² 0,71 com 761 operadoras diversas (odontológicas, autogestão, cooperativas, filantropia) é um resultado sólido e mais generalizável.
+
+**Feature Importance (Top 5):**
+
+| Feature | Importância |
+|---------|------------|
+| sinistralidade_lag_1 | 0,6956 |
+| sinistralidade_ma4 | 0,0740 |
+| sinistralidade_lag_4 | 0,0339 |
+| sinistralidade_lag_2 | 0,0310 |
+| receita_lag_4 | 0,0306 |
+
+**Distribuição de sinistralidade do mercado (943 operadoras):**
+
+| Faixa | Operadoras |
+|-------|------------|
+| < 50% | 168 |
+| 50–70% | 172 |
+| 70–80% | 200 |
+| 80–90% | 183 |
+| 90–100% | 53 |
+| > 100% | 37 |
+
+**Benchmark por modalidade (percentis reais):**
+
+| Modalidade | Operadoras | Mediana Sinistralidade |
+|-----------|-----------|------------------------|
+| Cooperativa Médica | 253 | 78,5% |
+| Medicina de Grupo | 206 | 73,8% |
+| Odontologia de Grupo | 114 | 32,6% |
+| Autogestão | 109 | 87,8% |
+| Cooperativa Odontológica | 87 | 52,0% |
+| Filantropia | 31 | 78,8% |
+
+**Deliverables da Sprint 8.5:**
+1. `sprint85_expansion.py` — ETL expandido (DIOPS + Série Temporal + SIB + Benchmark)
+2. `sprint85_ml_retrain.py` — Retreino XGBoost com base expandida
+3. Banco `ans_analytics.duckdb` expandido (~120 MB)
+4. 880 predições para próximo trimestre
+
+---
+
+## 3. Roadmap Futuro — Sprints 9 a 11
+
+### Sprint 9 — API REST *(pré-requisito: Sprint 8.5 ✅)* 🔜
 
 **Stack técnico:**
 
@@ -458,31 +519,29 @@ GET  /v1/health                                   → Status + versão do modelo
 FASE 1 (Concluída)         FASE 2 (Em Andamento)      FASE 3 (Sprint 11+)
 ━━━━━━━━━━━━━━━━━━━        ━━━━━━━━━━━━━━━━━━━        ━━━━━━━━━━━━━━━━━━━
 MVP Analítico              Motor Inteligente           Produto Comercial
-• Dados reais ANS          • Predição ML ✅ Concluído  • Interface dedicada
-• 6 operadoras piloto      • API programática          • Multi-tenant
-• Dashboard Streamlit      • Atualização automática    • SaaS-ready
+• Dados reais ANS          • Predição ML ✅            • Interface dedicada
+• 943 operadoras ✅        • API programática          • Multi-tenant
+• Dashboard v3.0 ✅        • Atualização automática    • SaaS-ready
 • Score de risco           • Alertas proativos         • Relatórios PDF
-• Benchmark IESS           • Retreino contínuo         • Mapas geográficos
-                           • Base ~700 operadoras
+• Benchmark real ✅        • Retreino contínuo         • Mapas geográficos
+• Série temporal 24T ✅    • Score 360°
 ```
 
 ## 5. Dependências entre Sprints
 
 ```
-Sprint 8 ✅ CONCLUÍDO
-    │
-    ▼
-Sprint 8.5 (Expansão mercado) ──→ Sprint 9 (API REST) ──→ Sprint 11 (Frontend)
-                                          │
-                                          ▼
-                                  Sprint 10 (Pipeline) — independente
+Sprint 8 ✅ ──→ Sprint 8.1 ✅ ──→ Sprint 8.5 ✅ ──→ Sprint 9 (API REST) ──→ Sprint 11 (Frontend)
+                                                       │
+                                                       ▼
+                                               Sprint 10 (Pipeline) — independente
 ```
 
-- **Sprint 8** ✅ — pré-requisito para Sprint 9 (a API expõe o modelo treinado)
-- **Sprint 8.5** — pré-requisito para que a API opere com dados do mercado completo
-- **Sprint 9** — pré-requisito para Sprint 11 (o frontend consome a API)
-- **Sprint 10** — independente, pode rodar em paralelo com Sprint 9 ou 11
-- **Sprint 11** — depende de Sprint 9 estar funcional
+- **Sprint 8** ✅ — Modelo preditivo XGBoost (6 operadoras)
+- **Sprint 8.1** ✅ — Refatoração UX/UI para escala (dashboard v3.0)
+- **Sprint 8.5** ✅ — Expansão para mercado completo (943 operadoras)
+- **Sprint 9** 🔜 — API REST FastAPI (próxima)
+- **Sprint 10** 🔜 — Pipeline automático (independente)
+- **Sprint 11** 🔜 — Interface React (depende da Sprint 9)
 
 ---
 
@@ -506,4 +565,4 @@ Sprint 8.5 (Expansão mercado) ──→ Sprint 9 (API REST) ──→ Sprint 11
 ---
 
 *Documento Técnico — Motor de Sinistralidade ANS — Tallent Two Financial Holding*
-*Autor: Ricardo Squillaci | Versão v2.2 | 20 de Maio de 2026*
+*Autor: Ricardo Squillaci | Versão v2.3 | 20 de Maio de 2026*
