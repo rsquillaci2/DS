@@ -1,0 +1,53 @@
+# Tallent Two — Design System v1.3
+# tokens/spacing.yaml
+
+meta:
+  version: "1.3"
+  base-unit: 4   # px — escala em múltiplos de 4
+
+scale:
+  '0':   0
+  '1':   4
+  '2':   8
+  '3':   12
+  '4':   16
+  '5':   24
+  '6':   32
+  '7':   48
+  '8':   64
+  '9':   96
+  '10':  128
+
+semantic:
+  inline-xs:    1   # 4px  — ícone + label
+  inline-sm:    2   # 8px
+  inline-md:    3   # 12px
+  stack-sm:     2   # 8px  — entre parágrafos curtos
+  stack-md:     4   # 16px — entre parágrafos
+  stack-lg:     6   # 32px — entre seções
+  stack-xl:     8   # 64px — entre blocos editoriais
+  card-padding: 5   # 24px
+  card-padding-lg: 6   # 32px — DarkCTA
+  hero-padding: 8   # 64px verticais em capa institucional
+
+radius:
+  none: 0
+  sm:   2
+  md:   4
+  lg:   8
+  pill: 999
+
+elevation:
+  flat:  "none"
+  card:  "0 1px 2px rgba(14,22,38,0.06), 0 4px 12px rgba(14,22,38,0.04)"
+  modal: "0 8px 32px rgba(14,22,38,0.16)"
+
+grid:
+  columns: 12
+  gutter: 4   # 16px
+  max-width: 1200
+  breakpoints:
+    sm: 640
+    md: 768
+    lg: 1024
+    xl: 1280
