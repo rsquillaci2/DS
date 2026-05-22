@@ -1,0 +1,102 @@
+# Tallent Two — Design System v1.3
+# tokens/typography.yaml
+
+meta:
+  version: "1.3"
+  principle: "Dual font system — Dejanire (institucional/editorial) + Roboto (UI/digital)"
+
+families:
+  display:
+    name: "Dejanire Headline"
+    fallback: "Playfair Display, Georgia, serif"
+    weights: [Light, Regular, Medium, Bold, Black]
+    styles: [Italic, Jewel]
+    use-for: "Mastheads, títulos institucionais, materiais premium"
+  text:
+    name: "Dejanire Text"
+    fallback: "Source Serif Pro, Georgia, serif"
+    weights: [Regular, Medium, Bold, Black]
+    styles: [Italic]
+    use-for: "Textos corridos institucionais, relatórios, white papers"
+  ui:
+    name: "Roboto"
+    fallback: "Inter, -apple-system, BlinkMacSystemFont, sans-serif"
+    weights: [Thin, Light, Regular, Medium, Bold, Black]
+    styles: [Italic]
+    use-for: "UI, navegação, formulários, dashboards, newsletters"
+
+scale:
+  masthead:
+    family: display
+    weight: 400
+    size: 56
+    leading: 1.05
+    tracking: -0.01
+    italic-accent: true   # NOVO — palavra-âncora em itálico + bordeaux
+    use-for: "Capa institucional, landing principal"
+  h1:
+    family: display
+    weight: 500
+    size: 44
+    leading: 1.10
+  h2:
+    family: display
+    weight: 500
+    size: 32
+    leading: 1.15
+  h3:
+    family: display
+    weight: 500
+    size: 24
+    leading: 1.20
+  eyebrow:
+    family: ui
+    weight: 600
+    size: 12
+    tracking: 0.12
+    uppercase: true
+    color: accent.bordeaux
+    use-for: "Tags de categoria (ex.: MARKETS, ADVISORY, BRAND)"
+  lead:
+    family: text
+    weight: 400
+    italic: true
+    size: 20
+    leading: 1.45
+    use-for: "Subtítulo / lead de matéria"
+  body:
+    family: text
+    weight: 400
+    size: 16
+    leading: 1.65
+    use-for: "Texto corrido institucional"
+  body-ui:
+    family: ui
+    weight: 400
+    size: 15
+    leading: 1.50
+    use-for: "UI, dashboards, dados"
+  caption:
+    family: ui
+    weight: 400
+    size: 12
+    color: neutral.gray-600
+  numeric-xl:
+    family: display
+    weight: 300
+    size: 48
+    color: neutral.gray-300
+    use-for: "Numeração de listas editoriais (01, 02, 03…)"
+  ticker:
+    family: ui
+    weight: 500
+    size: 12
+    tracking: 0.04
+    mono: true
+    use-for: "Barra de tickers financeiros"
+
+principles:
+  - "Dejanire + itálico bordeaux = momentos institucionais de impacto"
+  - "Roboto = navegação, UI, leitura prolongada em tela"
+  - "Eyebrow uppercase + bordeaux precede sempre títulos display"
+  - "Numeração gigante em cinza-300 lembra revistas editoriais europeias"
