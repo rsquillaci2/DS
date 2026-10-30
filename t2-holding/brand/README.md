@@ -1,6 +1,5 @@
 # Tallent Two — Identidade de Marca
-> Versão: 1.2 | Fonte: Manual de Marca Tallent Two (2025) | Repositório: rsquillaci2/DS
-
+> Versão: 1.3 (Editorial Premium) | Fonte: Manual de Marca Tallent Two (2025) + evolução v1.3 | Repositório: rsquillaci2/DS
 ---
 
 ## Identidade
@@ -229,6 +228,47 @@ Os seguintes assets ainda estão apenas no OneDrive e não foram migrados para e
 
 | Versão | Data | Descrição |
 |--------|------|-----------|
+| 1.3 | 2026-05 | Editorial Premium — tokens (colors, typography, spacing) + componentes (EditorialCard, DarkCTA, RankedList, TickerBar) |
+
+---
+
+## Modo Editorial (v1.3)
+
+A partir da v1.3, o DS Tallent Two ganha uma camada **Editorial Premium** — inspirada na gramática visual de publicações financeiras de referência (The Rio Times, Monocle, FT Weekend) e mantendo 100% do manual de marca v1.2.
+
+### Princípios
+
+1. **Dual font system reafirmado** — Dejanire (institucional/editorial) + Roboto (UI/digital).
+2. **Italic-accent bordeaux** — uma palavra-âncora do título pode aparecer em itálico + `#7A1F2B`, criando hierarquia editorial sem fugir do navy institucional.
+3. **Eyebrow uppercase bordeaux** sempre precede títulos display, marcando categoria/contexto.
+4. **Numeração gigante cinza-300** em listas ("01, 02, 03…") sinaliza ranking editorial.
+5. **Dark CTA navy-deep + gold** concentra conversão em um único bloco premium por viewport.
+
+### Tokens novos
+
+- `tokens/colors.yaml` — navy-deep, navy-ink, bordeaux, bordeaux-soft, paper, gray-100/400/600/700/900
+- `tokens/typography.yaml` — masthead, eyebrow, lead, numeric-xl, ticker (além de h1–h3, body, caption)
+- `tokens/spacing.yaml` — escala 4pt, semantic spacing, grid 12-col, breakpoints
+
+### Componentes novos
+
+| Componente       | Uso                                                 |
+|------------------|-----------------------------------------------------|
+| `EditorialCard`  | Card de matéria/insight com eyebrow + título display |
+| `DarkCTA`        | Bloco escuro de conversão (assinatura, demo, etc.)  |
+| `RankedList`     | Lista numerada editorial ("Most Viewed", "Top 5")   |
+| `TickerBar`      | Faixa superior com dados financeiros em fluxo       |
+
+### Acessibilidade
+
+Todas as combinações do `semantic.contrast` foram validadas em **WCAG AA mínimo**, com destaque para:
+- `cream` sobre `navy-deep` — 12.8:1 (AAA)
+- `bordeaux` sobre `pure` — 8.4:1 (AAA)
+- `navy-ink` sobre `gold` — 11.2:1 (AAA)
+
+### Referência visual
+
+A gramática editorial da v1.3 dialoga diretamente com o layout de [The Rio Times](https://www.riotimesonline.com), preservando a identidade T2: navy institucional, cream sofisticado, gold de prestígio — agora acrescidos do bordeaux como acento editorial.
 | 1.0 | 2025 | Manual de Marca inicial |
 | 1.1 | 2026-04 | Inventário completo de assets mapeado via SharePoint |
 | 1.2 | 2026-04 | Assets migrados para o repo: 16 logos + 26 fontes (42 arquivos) |

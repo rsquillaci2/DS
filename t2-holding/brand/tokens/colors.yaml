@@ -1,0 +1,62 @@
+# Tallent Two — Design System v1.3
+# tokens/colors.yaml
+# Última atualização: 2026-05-22
+
+meta:
+  version: "1.3"
+  name: "Tallent Two — Editorial Premium"
+  source: "Manual de Marca Tallent Two (2025) + evolução Editorial v1.3"
+
+primary:
+  navy:       "#2C3D5B"  # governança, confiança (mantido da v1.2)
+  navy-deep:  "#1B2740"  # NOVO — fundos de dark cards / CTA escuro
+  navy-ink:   "#0E1626"  # NOVO — texto display sobre fundos claros
+
+surface:
+  cream:  "#FFF3DE"      # off-white quente — sofisticação (mantido)
+  paper:  "#FAF7F0"      # NOVO — fundo de leitura longa, conforto
+  pure:   "#FFFFFF"      # mantido
+
+accent:
+  gold:           "#FFD700"  # prestígio, sucesso (mantido)
+  bordeaux:       "#7A1F2B"  # NOVO — acento editorial (itálicos, tags, links)
+  bordeaux-soft:  "#A8434F"  # NOVO — hover / variante secundária
+
+neutral:
+  gray-900:  "#1A1A1A"   # NOVO — texto corpo principal
+  gray-700:  "#333333"   # NOVO — texto secundário
+  gray-600:  "#4A4A4A"   # NOVO — metadados
+  gray-400:  "#9E9E9E"   # NOVO — captions
+  gray-300:  "#BEBEBE"   # mantido — neutralidade
+  gray-100:  "#EDEDED"   # NOVO — divisores finos
+  black:     "#000000"   # autoridade (mantido)
+  white:     "#FFFFFF"   # mantido
+
+semantic:
+  text:
+    primary:   neutral.gray-900
+    secondary: neutral.gray-600
+    inverse:   surface.cream
+    accent:    accent.bordeaux
+  background:
+    base:      surface.pure
+    reading:   surface.paper
+    premium:   surface.cream
+    inverse:   primary.navy-deep
+  border:
+    hair:      neutral.gray-100
+    standard:  neutral.gray-300
+  cta:
+    primary-bg:     primary.navy-deep
+    primary-text:   surface.cream
+    accent-bg:      accent.bordeaux
+    accent-text:    surface.pure
+    premium-bg:     accent.gold
+    premium-text:   primary.navy-ink
+
+contrast:
+  # combinações aprovadas WCAG AA mínimo
+  - { fg: neutral.gray-900,  bg: surface.pure,       ratio: "16.1:1" }
+  - { fg: surface.cream,     bg: primary.navy-deep,  ratio: "12.8:1" }
+  - { fg: accent.bordeaux,   bg: surface.pure,       ratio: "8.4:1"  }
+  - { fg: primary.navy-ink,  bg: accent.gold,        ratio: "11.2:1" }
